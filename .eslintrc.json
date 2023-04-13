@@ -1,0 +1,41 @@
+{
+    "env": {
+        "browser": false,
+        "es2021": false,
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "standard-with-typescript"
+    ],
+    "overrides": [
+        {
+          // enable the rule specifically for TypeScript files
+          "files": ["*.ts", "*.mts", "*.cts", "*.tsx"],
+          "rules": {
+            "indent": ["error", 2],
+            "quotes":["warn", "single"],
+            "linebreak-style": 2,
+            "no-console": "warn",
+            "no-unused-vars": 1,
+            "@typescript-eslint/no-unused-vars": [
+              "warn",
+              { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
+            ],
+            "@typescript-eslint/explicit-function-return-type": "off",
+            "no-empty": "warn"
+        }
+        }
+      ],
+      "spaced-comment": ["error", "always", {
+        "markers": ["/"]
+      }],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": ["./tsconfig.json"]
+    },
+    "plugins": [
+        "react"
+    ]
+    
+}
