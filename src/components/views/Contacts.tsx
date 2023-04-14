@@ -3,14 +3,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { type RootState } from '../../redux/store'
 import { Layout } from '../molecules'
 
-function ProductList () {
-  const userInfo = useSelector((state: RootState) => state.user)
-  const dispatch = useDispatch()
+function Contacts () {
   return (
     <Layout>
-      ProductList
+      Contacts
     </Layout>
   )
 }
 
-export default ProductList
+export default Contacts
