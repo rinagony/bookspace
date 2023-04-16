@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { FormattedMessage } from 'react-intl';
 
 const LogoComponent = styled.p`
     font-size: 1.4rem;
@@ -10,9 +11,9 @@ const LogoComponent = styled.p`
     text-shadow: 1px 1px ${(props) => props.theme.colors.green300};
 `
 
-function Logo () {
+function Logo() {
   return (
-    <LogoComponent>Fucking store</LogoComponent>
+    <LogoComponent><FormattedMessage id='primary.app-title' /></LogoComponent>
   )
 }
 

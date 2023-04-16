@@ -6,6 +6,7 @@ import { ExitToApp } from "@mui/icons-material";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import { useLocation, useNavigate } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 
 const HeaderTopComponent = styled.div`
   padding: 1rem 0;
@@ -58,8 +59,8 @@ function HeaderTop() {
   const navigate = useNavigate();
   const location = useLocation();
   const pagesList = [
+    { title: <FormattedMessage id="primary.products"/>, link: "/products" },
     { title: "About", link: "/about" },
-    { title: "Products", link: "/products" },
     { title: "My profile", link: "/my-profile" },
     { title: "Contacts", link: "/contacts" },
   ];
@@ -88,7 +89,7 @@ function HeaderTop() {
           <Grid item xs={12} lg={4} display="flex" justifyContent="flex-end">
             <ExitButton>
               <ExitIcon />
-              Exit
+              <FormattedMessage id="primary.exit" />
             </ExitButton>
             <IconButton>
               <FavoritesIcon />
