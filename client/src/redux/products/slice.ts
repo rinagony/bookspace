@@ -1,21 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit'
-import {getAllProducts} from './../../api/products'
-
-const initialState = null
+import { createSlice } from "@reduxjs/toolkit";
+import { IProduct } from "../../interfaces";
 
 export const productsSlice = createSlice({
-  name: 'products',
-  initialState,
+  name: "products",
+  initialState: [] as IProduct[],
   reducers: {
-    getAllProductsAction: (state) => {
-        getAllProducts().then((response) => {
-            console.log(response, 'response from  action')
-            state = response
-        })
-    }
-  }
-})
+    updateProducts: (state, action) => {
+      return state = action.payload;
+    },
+  },
+});
 
-export const { getAllProductsAction } = productsSlice.actions
+export const { updateProducts } = productsSlice.actions;
 
-export default productsSlice.reducer
+export default productsSlice.reducer;

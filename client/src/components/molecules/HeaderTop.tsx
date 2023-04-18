@@ -67,7 +67,7 @@ function HeaderTop() {
   return (
     <HeaderTopComponent>
       <Container maxWidth="lg">
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 1 }}>
+        <Grid container spacing={12}>
           <Grid item xs={12} lg={3}>
             <Logo />
           </Grid>

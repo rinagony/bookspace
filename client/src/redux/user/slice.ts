@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { IUser } from '../../interfaces'
 
-const initialState = {
+const initialState: IUser = {
   name: 'Asila',
   lastName: 'Krapovina'
 }

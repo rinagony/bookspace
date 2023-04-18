@@ -1,12 +1,21 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import userSlice from './user/slice'
 import thunk from 'redux-thunk';
-import { productsSlice } from './products/slice';
+import productsSlice from './products/slice';
+import { IProduct, IUser } from '../interfaces';
+
+interface IRootReducer {
+  user: IUser,
+  products: IProduct[]
+}
+
+const rootReducer = combineReducers<IRootReducer>({
+  user: userSlice,
+  products: productsSlice
+});
 
 export const store = configureStore({
-  reducer: {
-    user: userSlice,
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
 })
 

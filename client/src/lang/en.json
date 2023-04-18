@@ -4,5 +4,8 @@
     "primary.my-profile": "My profile",
     "primary.contacts": "Contacts",
     "primary.app-title": "Fucking store",
-    "primary.exit": "Exit"
+    "primary.exit": "Exit",
+    "primary.no-data": "Sorry, there is no data, come back later..",
+    "category": "Category: ",
+    "title": "Title: "
 }

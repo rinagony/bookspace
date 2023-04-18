@@ -2,11 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 const ButtonStyledComponent = styled.button`
-  height: 100%;
+  height: 2rem;
+  margin-top: 1.5rem;
   background: ${(props) => props.theme.colors.green300};
   color: ${(props) => props.theme.colors.white};
   border: none;
   border-radius: 2px;
+  font-size: 1rem;
+
   cursor: pointer;
 `;
 
