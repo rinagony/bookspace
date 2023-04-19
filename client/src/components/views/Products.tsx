@@ -13,10 +13,15 @@ const ProductList = styled(Grid)`
   margin-top: 2rem;
 `;
 
-const NoData = styled.h2`
-  margin-top: 50%;
-  text-align: center;
-  color: ${(props) => props.theme.colors.darkGreen};
+const NoData = styled.div`
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h2 {
+    text-align: center;
+    color: ${(props) => props.theme.colors.darkGreen};
+  }
 `;
 
 function Products() {
@@ -43,12 +48,12 @@ function Products() {
         <>
           {!products.length ? (
             <NoData>
-              <FormattedMessage id="primary.no-data" />
+              <h2><FormattedMessage id="primary.no-data" /></h2>
             </NoData>
           ) : (
             <ProductList marginTop={2} item container spacing={2}>
               {products.map((item, index) => (
-                <ProductItem key={index} data={item}/>
+                <ProductItem key={index} data={item} />
               ))}
             </ProductList>
           )}

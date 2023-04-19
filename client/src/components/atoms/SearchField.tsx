@@ -20,6 +20,7 @@ const SearchInput = styled.input`
   outline: none;
   border: none;
   width: 100%;
+  height: 1.9rem;
 `
 
 function SearchField({ searchData, setSearchData }: SearchFieldProps) {

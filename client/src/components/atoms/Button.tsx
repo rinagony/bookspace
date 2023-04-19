@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const ButtonStyledComponent = styled.button`
   height: 2rem;
-  margin-top: 1.5rem;
   background: ${(props) => props.theme.colors.green300};
   color: ${(props) => props.theme.colors.white};
   border: none;
@@ -16,11 +15,13 @@ const ButtonStyledComponent = styled.button`
 interface ButtonPropsInterface {
   children: React.ReactNode;
   typeButton: "button" | "submit" | "reset" | undefined;
+  styles?: React.CSSProperties;
+  onClick?: () => void;
 }
 
-function ButtonComponent({ children, typeButton }: ButtonPropsInterface) {
+function ButtonComponent({ children, typeButton, styles, onClick }: ButtonPropsInterface) {
   return (
-    <ButtonStyledComponent type={typeButton}>{children}</ButtonStyledComponent>
+    <ButtonStyledComponent onClick={onClick} style={styles} type={typeButton}>{children}</ButtonStyledComponent>
   );
 }
 

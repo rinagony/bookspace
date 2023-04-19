@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, Skeleton } from "@mui/material";
 
 function SkeletonCard() {
-  const repeatTimes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  const repeatTimes = [1, 2, 3, 4, 5, 6, 7, 8];
   return (
     <Grid marginTop={2} item container spacing={5}>
       {repeatTimes.map((item) => (

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { IProduct } from "../../interfaces";
 import { FormattedMessage } from "react-intl";
 import { ButtonComponent } from "../atoms";
+import { useNavigate } from "react-router-dom";
 
 interface ProductItemPropsInterface {
   data: IProduct;
@@ -45,6 +46,10 @@ const Title = styled(Paragraph)`
 `;
 
 function ProductItem({ data }: ProductItemPropsInterface) {
+  const navigate = useNavigate();
+  const handleOnClick = () => {
+    navigate(`/products/${data.id}`)
+  }
   return (
     <ProductItemComponent
       margin={5}
@@ -74,7 +79,7 @@ function ProductItem({ data }: ProductItemPropsInterface) {
         {data.category}
       </Paragraph>
       <Paragraph>{data.description}</Paragraph>
-      <ButtonComponent typeButton='button'>Learn more..</ButtonComponent>
+      <ButtonComponent onClick={handleOnClick} styles={{marginTop: '1.5rem'}} typeButton='button'>Learn more..</ButtonComponent>
     </ProductItemComponent>
   );
 }
