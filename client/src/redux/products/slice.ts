@@ -1,23 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IProduct } from "../../interfaces";
-import { getAllProducts } from "../../api/products";
+import { IInitialStateProducts, IProduct } from "../../interfaces";
+import { getAllProductsAction } from "./actions";
+
+const InitialState: IInitialStateProducts = {
+  products: [],
+  productsSelected: [],
+  loading: true,
+  error: null
+}
 
 export const productsSlice = createSlice({
   name: "products",
-  initialState: [] as IProduct[],
+  initialState: InitialState,
   reducers: {
-    updateProducts: (state, action) => {
-      return state = action.payload;
-    },
-    getAllProductsAction: (state) => {
-      getAllProducts()
-      .then((response) => {
-        return state = response;
-      })
+    setProductsSelected: (state, action) => {
+      state.productsSelected.push(action.payload)
     }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getAllProductsAction.fulfilled, (state, action) => {
+         state.products = action.payload;
+         state.loading = false;
+      })
+      .addCase(getAllProductsAction.rejected, (state, action) => {
+        console.log('rekected', action)
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 
-export const { updateProducts, getAllProductsAction } = productsSlice.actions;
+export const { setProductsSelected } = productsSlice.actions;
 
 export default productsSlice.reducer;

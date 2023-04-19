@@ -8,7 +8,9 @@ const ButtonStyledComponent = styled.button`
   border: none;
   border-radius: 2px;
   font-size: 1rem;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
 `;
 

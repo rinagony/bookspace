@@ -1,12 +1,13 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { AnyAction, ThunkAction, ThunkDispatch, combineReducers, configureStore } from '@reduxjs/toolkit'
 import userSlice from './user/slice'
 import thunk from 'redux-thunk';
 import productsSlice from './products/slice';
-import { IProduct, IUser } from '../interfaces';
+import { IInitialStateProducts, IProduct, IUser } from '../interfaces';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
-interface IRootReducer {
+export interface IRootReducer {
   user: IUser,
-  products: IProduct[]
+  products: IInitialStateProducts
 }
 
 const rootReducer = combineReducers<IRootReducer>({
@@ -18,8 +19,13 @@ export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
 })
-
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch
+export type AppDispatch = typeof store.dispatch;
+export type ReduxState = ReturnType<typeof rootReducer>;
+export type TypedThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  ReduxState,
+  unknown,
+  AnyAction
+>;
+export const useTypedSelector: TypedUseSelectorHook<ReduxState> = useSelector;

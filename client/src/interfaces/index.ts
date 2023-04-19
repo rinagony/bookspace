@@ -12,3 +12,10 @@ export interface IUser {
   name: string;
   lastName: string;
 }
+
+export interface IInitialStateProducts {
+  products: IProduct[],
+  productsSelected: IProduct[],
+  loading: boolean;
+  error: any;
+}

@@ -67,17 +67,8 @@ function ProductItem({ data }: ProductItemPropsInterface) {
         />
       </ImageContainer>
       <Title>
-        <span>
-          <FormattedMessage id="title" />
-        </span>
         {data.title}
       </Title>
-      <Paragraph>
-        <span>
-          <FormattedMessage id="category" />
-        </span>
-        {data.category}
-      </Paragraph>
       <Paragraph>{data.description}</Paragraph>
       <ButtonComponent onClick={handleOnClick} styles={{marginTop: '1.5rem'}} typeButton='button'>Learn more..</ButtonComponent>
     </ProductItemComponent>

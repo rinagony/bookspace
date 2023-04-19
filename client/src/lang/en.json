@@ -7,5 +7,9 @@
     "primary.exit": "Exit",
     "primary.no-data": "Sorry, there is no data, come back later..",
     "category": "Category: ",
-    "title": "Title: "
+    "title": "Title: ",
+    "products.in-stock": "In stock: ",
+    "products.price": "Price: ",
+    "error.reload": "Please, reload page. Error occured:",
+    "product.added": "Your book have been added to the busket"
 }
