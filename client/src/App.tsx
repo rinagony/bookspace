@@ -1,6 +1,14 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import { About, Contacts, MyProfile, NotFound, Products, SingleProduct } from "./components/views";
+import {
+  About,
+  Basket,
+  Contacts,
+  MyProfile,
+  NotFound,
+  Products,
+  SingleProduct,
+} from "./components/views";
 import { ThemeProvider } from "styled-components";
 import { colors } from "./assets/variables";
 import { getAllProductsAction } from "./redux/products/actions";
@@ -23,7 +31,8 @@ function App() {
           <Route path="/products/:id" element={<SingleProduct />} />
           <Route path="/about" element={<About />} />
           <Route path="/contacts" element={<Contacts />} />
-          <Route path='*' element={<NotFound />} />
+          <Route path="/basket" element={<Basket />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

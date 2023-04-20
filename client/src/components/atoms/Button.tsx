@@ -21,9 +21,16 @@ interface ButtonPropsInterface {
   onClick?: () => void;
 }
 
-function ButtonComponent({ children, typeButton, styles, onClick }: ButtonPropsInterface) {
+function ButtonComponent({
+  children,
+  typeButton,
+  styles,
+  onClick,
+}: ButtonPropsInterface) {
   return (
-    <ButtonStyledComponent onClick={onClick} style={styles} type={typeButton}>{children}</ButtonStyledComponent>
+    <ButtonStyledComponent onClick={onClick} style={styles} type={typeButton}>
+      {children}
+    </ButtonStyledComponent>
   );
 }
 

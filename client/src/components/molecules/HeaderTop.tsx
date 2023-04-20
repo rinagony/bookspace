@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled, { css } from "styled-components";
 import { Container, Grid } from "@mui/material";
 import { Logo } from "../atoms";
@@ -7,6 +7,9 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
+import { IInitialStateProducts } from "../../interfaces";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 const HeaderTopComponent = styled.div`
   padding: 1rem 0;
@@ -42,6 +45,10 @@ const IconButton = styled.button`
   justify-content: center;
 `;
 
+const IconButtonBasket = styled(IconButton)`
+  position: relative;
+`;
+
 const PageItem = styled.a`
   color: ${(props) => props.theme.colors.black};
   font-weight: 600;
@@ -55,11 +62,27 @@ const ExitButton = styled(IconButton)`
   margin-right: 2rem;
 `;
 
+const ProductsAmount = styled.div`
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.5rem;
+  right: 0;
+  font-size: 0.8rem;
+  top: 0;
+  color: ${(props) => props.theme.colors.white};
+  background: ${(props) => props.theme.colors.darkGreen};
+`;
+
 function HeaderTop() {
   const navigate = useNavigate();
   const location = useLocation();
+  const productsState: IInitialStateProducts = useSelector(
+    (state: RootState) => state.products
+  );
+
   const pagesList = [
-    { title: <FormattedMessage id="primary.products"/>, link: "/products" },
+    { title: <FormattedMessage id="primary.products" />, link: "/products" },
     { title: "About", link: "/about" },
     { title: "My profile", link: "/my-profile" },
     { title: "Contacts", link: "/contacts" },
@@ -94,9 +117,14 @@ function HeaderTop() {
             <IconButton>
               <FavoritesIcon />
             </IconButton>
-            <IconButton>
+            <IconButtonBasket onClick={() => navigate("/basket")}>
               <BusketIcon />
-            </IconButton>
+              <ProductsAmount>
+                {productsState.productsSelected.length
+                  ? productsState.productsSelected.length
+                  : 0}
+              </ProductsAmount>
+            </IconButtonBasket>
           </Grid>
         </Grid>
       </Container>

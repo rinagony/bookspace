@@ -48,8 +48,8 @@ const Title = styled(Paragraph)`
 function ProductItem({ data }: ProductItemPropsInterface) {
   const navigate = useNavigate();
   const handleOnClick = () => {
-    navigate(`/products/${data.id}`)
-  }
+    navigate(`/products/${data.id}`);
+  };
   return (
     <ProductItemComponent
       margin={5}
@@ -66,11 +66,15 @@ function ProductItem({ data }: ProductItemPropsInterface) {
           alt={data.title}
         />
       </ImageContainer>
-      <Title>
-        {data.title}
-      </Title>
+      <Title>{data.title}</Title>
       <Paragraph>{data.description}</Paragraph>
-      <ButtonComponent onClick={handleOnClick} styles={{marginTop: '1.5rem'}} typeButton='button'>Learn more..</ButtonComponent>
+      <ButtonComponent
+        onClick={handleOnClick}
+        styles={{ marginTop: "1.5rem" }}
+        typeButton="button"
+      >
+        Learn more..
+      </ButtonComponent>
     </ProductItemComponent>
   );
 }

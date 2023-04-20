@@ -10,6 +10,8 @@ import { Alert, Grid, Snackbar } from "@mui/material";
 import { IProduct } from "../../interfaces";
 import { setProductsSelected } from "../../redux/products/slice";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { addProductToBasket } from "../../redux/products/actions";
+import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 
 const ImageContainer = styled.div`
   width: 100%;
@@ -55,19 +57,20 @@ function SingleProduct() {
     undefined
   );
   const [alert, setAlert] = useState(false)
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<RootState, void, AnyAction>>();
 
   useEffect(() => {
     const productItem: IProduct | undefined = products.find(
       (item: IProduct) => item.id === id
     );
-    console.log(products, "poduc");
     if (productItem) setProductSelected(productItem);
   }, [id, products]);
 
   const handleOnAdd = () => {
-    dispatch(setProductsSelected(productSelected));
-    setAlert(true)
+    if(productSelected) {
+      dispatch(addProductToBasket(productSelected));
+      setAlert(true)
+    }
   };
 
   return (
@@ -127,14 +130,14 @@ function SingleProduct() {
               </Grid>
               <Grid display={"flex"} justifyContent={"space-between"}>
                 <ButtonComponent onClick={handleOnAdd} typeButton="button">
-                  Add to busket
+                  <FormattedMessage id="products.add" />
                 </ButtonComponent>
                 <ButtonComponent
                   styles={{ background: "pink" }}
                   onClick={() => {}}
                   typeButton="button"
                 >
-                  Favorite
+                  <FormattedMessage id="products.favorites" />
                   <FavoriteIcon fontSize="small" />
                 </ButtonComponent>
               </Grid>

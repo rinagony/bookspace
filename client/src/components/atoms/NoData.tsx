@@ -1,7 +1,7 @@
-import React from 'react'
-import { Container } from '@mui/material'
-import styled from 'styled-components'
-import { FormattedMessage } from 'react-intl';
+import React from "react";
+import { Container } from "@mui/material";
+import styled from "styled-components";
+import { FormattedMessage } from "react-intl";
 
 const NoDataComponent = styled.div`
   height: 100%;
@@ -15,9 +15,13 @@ const NoDataComponent = styled.div`
 `;
 
 function NoData() {
-    return (
-        <NoDataComponent><h2><FormattedMessage id={'primary.no-data'} /></h2></NoDataComponent>
-    )
+  return (
+    <NoDataComponent>
+      <h2>
+        <FormattedMessage id={"primary.no-data"} />
+      </h2>
+    </NoDataComponent>
+  );
 }
 
-export default NoData
+export default NoData;

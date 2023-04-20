@@ -1,32 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IInitialStateProducts, IProduct } from "../../interfaces";
-import { getAllProductsAction } from "./actions";
+import { addProductToBasket, getAllProductsAction } from "./actions";
 
 const InitialState: IInitialStateProducts = {
   products: [],
   productsSelected: [],
   loading: true,
-  error: null
-}
+  error: null,
+};
 
 export const productsSlice = createSlice({
   name: "products",
   initialState: InitialState,
   reducers: {
     setProductsSelected: (state, action) => {
-      state.productsSelected.push(action.payload)
-    }
+      state.productsSelected.push(action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(getAllProductsAction.fulfilled, (state, action) => {
-         state.products = action.payload;
-         state.loading = false;
+        state.products = action.payload;
+        state.loading = false;
       })
       .addCase(getAllProductsAction.rejected, (state, action) => {
-        console.log('rekected', action)
         state.loading = false;
         state.error = action.error.message;
+      })
+      .addCase(addProductToBasket.fulfilled, (state, action) => {
+        state.productsSelected = action.payload;
       });
   },
 });

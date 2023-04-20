@@ -1,11 +1,11 @@
 export interface IProduct {
-    id: string,
-    title: string,
-    category: string,
-    description: string,
-    inStock: boolean,
-    price: number,
-    image: string
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  inStock: boolean;
+  price: number;
+  image: string;
 }
 
 export interface IUser {
@@ -14,8 +14,8 @@ export interface IUser {
 }
 
 export interface IInitialStateProducts {
-  products: IProduct[],
-  productsSelected: IProduct[],
+  products: IProduct[];
+  productsSelected: IProduct[];
   loading: boolean;
   error: any;
 }

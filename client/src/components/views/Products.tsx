@@ -17,7 +17,9 @@ const ErrorText = styled.p`
 `;
 
 function Products() {
-  const productsState: IInitialStateProducts = useSelector((state: RootState) => state.products);
+  const productsState: IInitialStateProducts = useSelector(
+    (state: RootState) => state.products
+  );
 
   if (productsState.error)
     return (

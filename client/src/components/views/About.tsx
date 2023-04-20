@@ -1,12 +1,8 @@
-import React from 'react'
-import { Layout } from '../molecules'
+import React from "react";
+import { Layout } from "../molecules";
 
-function About () {
-  return (
-    <Layout>
-      About
-    </Layout>
-  )
+function About() {
+  return <Layout>About</Layout>;
 }
 
-export default About
+export default About;
