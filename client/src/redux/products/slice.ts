@@ -31,6 +31,18 @@ export const productsSlice = createSlice({
         state.productsSelected = action.payload;
       });
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getAllProductsAction.fulfilled, (state, action) => {
+         state.products = action.payload;
+         state.loading = false;
+      })
+      .addCase(getAllProductsAction.rejected, (state, action) => {
+        console.log('rekected', action)
+        state.loading = false;
+        state.error = action.error.message;
+      });
+  },
 });
 
 export const { setProductsSelected } = productsSlice.actions;

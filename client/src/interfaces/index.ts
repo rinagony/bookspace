@@ -14,8 +14,8 @@ export interface IUser {
 }
 
 export interface IInitialStateProducts {
-  products: IProduct[];
-  productsSelected: IProduct[];
+  products: IProduct[],
+  productsSelected: IProduct[],
   loading: boolean;
   error: any;
 }
