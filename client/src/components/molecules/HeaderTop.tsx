@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
 import { Container, Grid } from "@mui/material";
 import { Logo } from "../atoms";
@@ -53,8 +53,8 @@ const PageItem = styled.a`
   color: ${(props) => props.theme.colors.black};
   font-weight: 600;
   cursor: pointer;
-  font-size: 1.2rem;
-  margin-left: 1.2rem;
+  font-size: 1.1rem;
+  margin-left: 1.1rem;
   border-bottom: 1px solid ${(props) => props.theme.colors.black};
 `;
 
@@ -74,6 +74,15 @@ const ProductsAmount = styled.div`
   background: ${(props) => props.theme.colors.darkGreen};
 `;
 
+const HeaderButtonContainer = styled(Grid)`
+  display: flex;
+  justify-content: flex-end;
+
+  @media screen and (max-width: 900px) {
+    justify-content: center;
+  }
+`
+
 function HeaderTop() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -90,11 +99,11 @@ function HeaderTop() {
   return (
     <HeaderTopComponent>
       <Container maxWidth="lg">
-        <Grid container spacing={12}>
-          <Grid item xs={12} lg={3}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={3} lg={3}>
             <Logo />
           </Grid>
-          <Grid item xs={12} lg={5} justifyContent="center" display="flex">
+          <Grid item xs={12} md={5} lg={5} justifyContent="center" display="flex">
             {pagesList.map((item, index) => (
               <PageItem
                 style={
@@ -109,7 +118,7 @@ function HeaderTop() {
               </PageItem>
             ))}
           </Grid>
-          <Grid item xs={12} lg={4} display="flex" justifyContent="flex-end">
+          <HeaderButtonContainer item xs={12} md={4} lg={4}>
             <ExitButton>
               <ExitIcon />
               <FormattedMessage id="primary.exit" />
@@ -125,7 +134,7 @@ function HeaderTop() {
                   : 0}
               </ProductsAmount>
             </IconButtonBasket>
-          </Grid>
+          </HeaderButtonContainer>
         </Grid>
       </Container>
     </HeaderTopComponent>

@@ -2,9 +2,9 @@ import React from "react";
 import { Grid } from "@mui/material";
 import styled from "styled-components";
 import { IProduct } from "../../interfaces";
-import { FormattedMessage } from "react-intl";
 import { ButtonComponent } from "../atoms";
 import { useNavigate } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 
 interface ProductItemPropsInterface {
   data: IProduct;
@@ -12,6 +12,8 @@ interface ProductItemPropsInterface {
 
 const ProductItemComponent = styled(Grid)`
   padding: 15px;
+  min-width: 250px;
+  width: 100%;
   background: ${(props) => props.theme.colors.white};
 `;
 
@@ -19,7 +21,8 @@ const ImageContainer = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  height: 20rem;
+  height: 15rem;
+  border-bottom": 
   border-radius: 5px;
 `;
 
@@ -52,7 +55,7 @@ function ProductItem({ data }: ProductItemPropsInterface) {
   };
   return (
     <ProductItemComponent
-      margin={5}
+      margin={2}
       item
       display={"flex"}
       flexDirection={"column"}
@@ -73,7 +76,7 @@ function ProductItem({ data }: ProductItemPropsInterface) {
         styles={{ marginTop: "1.5rem" }}
         typeButton="button"
       >
-        Learn more..
+        <FormattedMessage id="general.learn" />
       </ButtonComponent>
     </ProductItemComponent>
   );

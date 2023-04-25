@@ -30,7 +30,7 @@ function SearchField({ searchData, setSearchData }: SearchFieldProps) {
     <SearchFieldComponent>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <SearchInput type="text" {...register("searchData")} />
-        <ButtonComponent typeButton="submit">
+        <ButtonComponent styles={{padding: '0.2rem'}} typeButton="submit">
           <SearchOutlinedIcon />
         </ButtonComponent>
       </Form>

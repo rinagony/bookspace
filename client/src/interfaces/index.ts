@@ -8,6 +8,10 @@ export interface IProduct {
   image: string;
 }
 
+export interface IProductSelected extends IProduct {
+  amount: number;
+}
+
 export interface IUser {
   name: string;
   lastName: string;
@@ -15,7 +19,7 @@ export interface IUser {
 
 export interface IInitialStateProducts {
   products: IProduct[],
-  productsSelected: IProduct[],
+  productsSelected: IProductSelected[],
   loading: boolean;
   error: any;
 }

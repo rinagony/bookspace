@@ -21,7 +21,7 @@ export const getAllProductsAction = createAsyncThunk(
 
 export const addProductToBasket = createAsyncThunk(
   "products/addProduct",
-  async (productsSelected: IProduct) => {
+  async (productSelected: IProduct) => {
     try {
       const response = await fetch(
         `${process.env.REACT_APP_SERVER}/api/productsSelected`,
@@ -30,13 +30,31 @@ export const addProductToBasket = createAsyncThunk(
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(productsSelected),
+          body: JSON.stringify(productSelected),
         }
       );
       const data = await response.json();
       return data;
     } catch (err) {
       console.log("inside try err", typeof err);
+      throw err;
+    }
+  }
+);
+
+export const getProductsFromBasket = createAsyncThunk(
+  "products/getProductsFromBasket",
+  async () => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_SERVER}/api/productsSelected`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch products");
+      }
+      const data = await response.json();
+      return data;
+    } catch (err) {
       throw err;
     }
   }

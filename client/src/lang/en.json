@@ -14,5 +14,6 @@
   "error.reload": "Please, reload page. Error occured:",
   "product.added": "Your book have been added to the busket",
   "products.add": "Add to busket",
-  "products.favorites": "Favorite"
+  "products.favorites": "Favorite",
+  "general.learn": "Learn more.."
 }

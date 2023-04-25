@@ -9,6 +9,10 @@ const LogoComponent = styled.p`
   font-weight: 600;
   color: ${(props) => props.theme.colors.darkGreen};
   text-shadow: 1px 1px ${(props) => props.theme.colors.green300};
+
+  @media screen and (max-width: 900px) {
+    text-align: center;
+  }
 `;
 
 function Logo() {

@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { type RootState } from "../../redux/store";
-import { Layout, ProductItem } from "../molecules";
-import { ButtonComponent, NoData, SkeletonCard } from "../atoms";
+import { Layout } from "../molecules";
+import { ButtonComponent, NoData } from "../atoms";
 import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
 import { Grid } from "@mui/material";
-import { IInitialStateProducts, IProduct } from "../../interfaces";
+import { IProductSelected } from "../../interfaces";
+import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
+import { getProductsFromBasket } from "../../redux/products/actions";
 
 const ProductList = styled(Grid)`
   margin-top: 2rem;
@@ -39,11 +41,17 @@ const Paragraph = styled.p`
 `;
 
 function Basket() {
-  const productsSelected: IProduct[] = useSelector(
+  const productsSelected: IProductSelected[] = useSelector(
     (state: RootState) => state.products.productsSelected
   );
+  const dispatch = useDispatch<ThunkDispatch<RootState, void, AnyAction>>();
 
-  const handleOnClick = (item: IProduct) => {
+  useEffect(() => {
+    dispatch(getProductsFromBasket())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleOnClick = (item: IProductSelected) => {
     console.log("remove", item);
   };
 
@@ -82,7 +90,7 @@ function Basket() {
                   <span>
                     <FormattedMessage id="products.amount" />
                   </span>
-                  2
+                  {item.amount}
                 </Paragraph>
               </div>
               <ButtonComponent

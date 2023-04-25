@@ -8,10 +8,10 @@ import {
   NotFound,
   Products,
   SingleProduct,
-} from "./components/views";
+} from "./components/pages";
 import { ThemeProvider } from "styled-components";
 import { colors } from "./assets/variables";
-import { getAllProductsAction } from "./redux/products/actions";
+import { getAllProductsAction, getProductsFromBasket } from "./redux/products/actions";
 import { useDispatch } from "react-redux";
 import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { RootState } from "./redux/store";
@@ -20,7 +20,9 @@ function App() {
   const dispatch = useDispatch<ThunkDispatch<RootState, void, AnyAction>>();
   useEffect(() => {
     dispatch(getAllProductsAction());
-  }, [dispatch]);
+    dispatch(getProductsFromBasket())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <ThemeProvider theme={{ colors }}>
       <BrowserRouter>

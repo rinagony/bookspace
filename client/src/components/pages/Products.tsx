@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { type RootState } from "../../redux/store";
 import { Layout, ProductItem } from "../molecules";
 import { NoData, SkeletonCard } from "../atoms";
@@ -38,7 +38,12 @@ function Products() {
           {!productsState.products.length ? (
             <NoData />
           ) : (
-            <ProductList marginTop={2} item container spacing={2}>
+            <ProductList
+              justifyContent={"center"}
+              marginTop={2}
+              container
+              spacing={2}
+            >
               {productsState.products.map((item, index) => (
                 <ProductItem key={index} data={item} />
               ))}
