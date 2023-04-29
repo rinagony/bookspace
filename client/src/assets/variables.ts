@@ -5,5 +5,6 @@ export const colors = {
   green100: '#b2dfdb',
   green300: '#4db6ac',
   lightGreen: '#e0f2f1',
-  primary: '#80cbc4'
+  primary: '#80cbc4',
+  red: "#ff8282",
 }

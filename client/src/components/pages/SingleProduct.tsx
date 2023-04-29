@@ -7,7 +7,7 @@ import { ButtonComponent, NoData } from "../atoms";
 import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
 import { Alert, Grid, Snackbar } from "@mui/material";
-import { IProduct, IProductSelected } from "../../interfaces";
+import { IProduct } from "../../interfaces";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import {
   addProductToBasket,
@@ -21,6 +21,7 @@ const ImageContainer = styled.div`
   overflow: hidden;
   height: 25rem;
   border-radius: 5px;
+  padding-left: 0;
 
   img {
     width: 100%;
@@ -30,7 +31,23 @@ const ImageContainer = styled.div`
   img:hover {
     transform: scale(1.2);
   }
+
+  @media screen and (max-width: 600px) {
+   height: 300px;
+  }
 `;
+
+const ProductContainer = styled(Grid)`
+  display: flex;
+  justify-content: center;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column !important;
+    align-items: center;
+    width: 100%;
+    padding: 0 1rem;
+  }
+`
 
 const Title = styled.div`
   font-size: 1.5rem;
@@ -49,6 +66,18 @@ const Paragraph = styled.p`
     font-weight: 600;
   }
 `;
+
+const InfoContainer = styled(Grid)`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
+const ButtonsContainer = styled(Grid)`
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+`
 
 function SingleProduct() {
   const { id } = useParams();
@@ -77,7 +106,7 @@ function SingleProduct() {
       dispatch(
         addProductToBasket(productSelected)
       ).then(() => {
-        dispatch(getProductsFromBasket);
+        dispatch(getProductsFromBasket());
       });
       setAlert(true);
     }
@@ -86,7 +115,7 @@ function SingleProduct() {
   return (
     <Layout>
       <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        anchorOrigin={{ vertical: "top", horizontal: "left" }}
         open={alert}
         autoHideDuration={3000}
         onClose={() => setAlert(false)}
@@ -102,28 +131,24 @@ function SingleProduct() {
       {!productSelected ? (
         <NoData />
       ) : (
-        <Grid
+        <ProductContainer
           container
-          display={"flex"}
-          justifyContent={"center"}
+          item
           columnSpacing={{ xs: 1, sm: 3 }}
         >
-          <Grid item xs={4}>
+          <Grid item sm={4}>
             <ImageContainer>
               <img
-                width={"100%"}
                 src={productSelected.image}
                 srcSet={productSelected.image}
                 alt={productSelected.title}
               />
             </ImageContainer>
           </Grid>
-          <Grid
+          <InfoContainer
             item
-            xs={4}
-            display={"flex"}
-            flexDirection={"column"}
-            justifyContent={"space-between"}
+            container
+            sm={4}
           >
             <Grid>
               <Title>{productSelected.title}</Title>
@@ -147,25 +172,25 @@ function SingleProduct() {
                 {productSelected.price} €
               </Paragraph>
             </Grid>
-            <Grid display={"flex"} justifyContent={"space-between"}>
+            <ButtonsContainer>
               <ButtonComponent
-                styles={{ borderRadius: "5px" }}
+                styles={{ borderRadius: "5px", marginRight: '0.5rem' }}
                 onClick={handleOnAdd}
                 typeButton="button"
               >
                 <FormattedMessage id="products.add" />
               </ButtonComponent>
               <ButtonComponent
-                styles={{ background: "pink", borderRadius: "5px" }}
+                styles={{ background: "pink", borderRadius: "5px", marginLeft: '0.5rem' }}
                 onClick={() => {}}
                 typeButton="button"
               >
                 <FormattedMessage id="products.favorites" />
                 <FavoriteIcon fontSize="small" />
               </ButtonComponent>
-            </Grid>
-          </Grid>
-        </Grid>
+            </ButtonsContainer>
+          </InfoContainer>
+        </ProductContainer>
       )}
     </Layout>
   );

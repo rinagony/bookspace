@@ -27,9 +27,6 @@ export const productsSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
-      .addCase(addProductToBasket.fulfilled, (state, action) => {
-        state.productsSelected = [...state.productsSelected, action.payload];
-      })
       .addCase(getProductsFromBasket.fulfilled, (state, action) => {
         state.productsSelected = action.payload;
       })

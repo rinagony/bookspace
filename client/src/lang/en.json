@@ -12,8 +12,11 @@
   "products.price": "Price: ",
   "products.amount": "Amount: ",
   "error.reload": "Please, reload page. Error occured:",
-  "product.added": "Your book have been added to the busket",
+  "product.added": "Product have been added to the busket",
+  "product.removed": "Your book have been removed from the busket",
   "products.add": "Add to busket",
   "products.favorites": "Favorite",
-  "general.learn": "Learn more.."
+  "primary.learn": "Learn more..",
+  "primary.remove": "Remove",
+  "primary.back": "Back"
 }

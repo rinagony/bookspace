@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import { Container, Grid } from "@mui/material";
 import { Logo } from "../atoms";
@@ -7,7 +7,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
-import { IInitialStateProducts } from "../../interfaces";
+import { IProductSelected } from "../../interfaces";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 
@@ -56,6 +56,10 @@ const PageItem = styled.a`
   font-size: 1.1rem;
   margin-left: 1.1rem;
   border-bottom: 1px solid ${(props) => props.theme.colors.black};
+
+  @media screen and (max-width: 600px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const ExitButton = styled(IconButton)`
@@ -81,14 +85,22 @@ const HeaderButtonContainer = styled(Grid)`
   @media screen and (max-width: 900px) {
     justify-content: center;
   }
-`
+`;
 
 function HeaderTop() {
   const navigate = useNavigate();
   const location = useLocation();
-  const productsState: IInitialStateProducts = useSelector(
-    (state: RootState) => state.products
+  const productsSelected: IProductSelected[] = useSelector(
+    (state: RootState) => state.products.productsSelected
   );
+  const [productsSelectedAmount, setProductsSelectedAmount] =
+    useState<number>(0);
+
+  useEffect(() => {
+    let amount: number = 0;
+    productsSelected.map((item) => (amount += item.amount));
+    setProductsSelectedAmount(amount);
+  }, [productsSelected]);
 
   const pagesList = [
     { title: <FormattedMessage id="primary.products" />, link: "/products" },
@@ -103,7 +115,14 @@ function HeaderTop() {
           <Grid item xs={12} md={3} lg={3}>
             <Logo />
           </Grid>
-          <Grid item xs={12} md={5} lg={5} justifyContent="center" display="flex">
+          <Grid
+            item
+            xs={12}
+            md={5}
+            lg={5}
+            justifyContent="center"
+            display="flex"
+          >
             {pagesList.map((item, index) => (
               <PageItem
                 style={
@@ -128,11 +147,7 @@ function HeaderTop() {
             </IconButton>
             <IconButtonBasket onClick={() => navigate("/basket")}>
               <BusketIcon />
-              <ProductsAmount>
-                {productsState.productsSelected.length
-                  ? productsState.productsSelected.length
-                  : 0}
-              </ProductsAmount>
+              <ProductsAmount>{productsSelectedAmount}</ProductsAmount>
             </IconButtonBasket>
           </HeaderButtonContainer>
         </Grid>

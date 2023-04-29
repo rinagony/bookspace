@@ -9,6 +9,7 @@ interface LayoutPropsInterface {
 
 const ContainerComponent = styled(Container)`
   padding-top: 2rem;
+  padding-bottom: 2rem;
 `;
 
 function Layout({ children }: LayoutPropsInterface) {

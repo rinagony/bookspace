@@ -76,7 +76,7 @@ function ProductItem({ data }: ProductItemPropsInterface) {
         styles={{ marginTop: "1.5rem" }}
         typeButton="button"
       >
-        <FormattedMessage id="general.learn" />
+        <FormattedMessage id="primary.learn" />
       </ButtonComponent>
     </ProductItemComponent>
   );
