@@ -9,3 +9,8 @@ This application represents my experience with:
 7) SCSS, styled-components, Material design
 8) Translations
 9) Atomic design pattern
+
+Steps to run application: 
+1) run `npm install` in the root folder
+2) run `yarn`, then `yarn start` in Client folder
+3) run `npm start` in Server folder
