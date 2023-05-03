@@ -18,5 +18,7 @@
   "products.favorites": "Favorite",
   "primary.learn": "Learn more..",
   "primary.remove": "Remove",
-  "primary.back": "Back"
+  "primary.back": "Back",
+  "products.search": "Search products:",
+  "products.filter": "Filter products by:"
 }

@@ -3,12 +3,10 @@ import styled from "styled-components";
 import { FieldValues, useForm } from "react-hook-form";
 import ButtonComponent from "./Button";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-
-const SearchFieldComponent = styled.div``;
+import { Input } from "@mui/material";
 
 interface SearchFieldProps {
-  searchData: string;
-  setSearchData: () => void;
+  handleSearchData: (dataToFilter: string) => void
 }
 
 const Form = styled.form`
@@ -16,25 +14,25 @@ const Form = styled.form`
   width: 100%;
 `;
 
-const SearchInput = styled.input`
-  outline: none;
-  border: none;
+const SearchInput = styled(Input)`
   width: 100%;
   height: 1.9rem;
 `;
 
-function SearchField({ searchData, setSearchData }: SearchFieldProps) {
+function SearchField({ handleSearchData }: SearchFieldProps) {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data: FieldValues) => {};
+  const onSubmitSearch = (data: FieldValues) => {
+    handleSearchData(data.searchData);
+  };
   return (
-    <SearchFieldComponent>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+    <>
+      <Form onSubmit={handleSubmit(onSubmitSearch)}>
         <SearchInput type="text" {...register("searchData")} />
         <ButtonComponent styles={{padding: '0.2rem'}} typeButton="submit">
           <SearchOutlinedIcon />
         </ButtonComponent>
       </Form>
-    </SearchFieldComponent>
+    </>
   );
 }
 

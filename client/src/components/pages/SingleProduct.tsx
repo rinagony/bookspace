@@ -33,21 +33,21 @@ const ImageContainer = styled.div`
   }
 
   @media screen and (max-width: 600px) {
-   height: 300px;
+    height: 300px;
   }
 `;
 
 const ProductContainer = styled(Grid)`
   display: flex;
+  padding-top: 2rem;
   justify-content: center;
-
   @media screen and (max-width: 600px) {
     flex-direction: column !important;
     align-items: center;
     width: 100%;
     padding: 0 1rem;
   }
-`
+`;
 
 const Title = styled.div`
   font-size: 1.5rem;
@@ -71,22 +71,23 @@ const InfoContainer = styled(Grid)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`
+`;
 
 const ButtonsContainer = styled(Grid)`
   display: flex;
   justify-content: center;
+  align-items: flex-end;
   margin-top: 1.5rem;
-`
+`;
 
 function SingleProduct() {
   const { id } = useParams();
   const products: IProduct[] = useSelector(
     (state: RootState) => state.products.products
   );
-  const [productSelected, setProductSelected] = useState<
-    IProduct | undefined
-  >(undefined);
+  const [productSelected, setProductSelected] = useState<IProduct | undefined>(
+    undefined
+  );
   const [alert, setAlert] = useState(false);
   const dispatch = useDispatch<ThunkDispatch<RootState, void, AnyAction>>();
 
@@ -98,14 +99,12 @@ function SingleProduct() {
     if (productItem) {
       setProductSelected(productItem);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, products]);
 
   const handleOnAdd = () => {
     if (productSelected) {
-      dispatch(
-        addProductToBasket(productSelected)
-      ).then(() => {
+      dispatch(addProductToBasket(productSelected)).then(() => {
         dispatch(getProductsFromBasket());
       });
       setAlert(true);
@@ -131,11 +130,7 @@ function SingleProduct() {
       {!productSelected ? (
         <NoData />
       ) : (
-        <ProductContainer
-          container
-          item
-          columnSpacing={{ xs: 1, sm: 3 }}
-        >
+        <ProductContainer container item columnSpacing={{ xs: 1, sm: 3 }}>
           <Grid item sm={4}>
             <ImageContainer>
               <img
@@ -145,11 +140,7 @@ function SingleProduct() {
               />
             </ImageContainer>
           </Grid>
-          <InfoContainer
-            item
-            container
-            sm={4}
-          >
+          <InfoContainer item container sm={4}>
             <Grid>
               <Title>{productSelected.title}</Title>
               <Paragraph>
@@ -174,14 +165,23 @@ function SingleProduct() {
             </Grid>
             <ButtonsContainer>
               <ButtonComponent
-                styles={{ borderRadius: "5px", marginRight: '0.5rem' }}
+                styles={{
+                  borderRadius: "5px",
+                  marginRight: "0.5rem",
+                  height: "2.8rem",
+                }}
                 onClick={handleOnAdd}
                 typeButton="button"
               >
                 <FormattedMessage id="products.add" />
               </ButtonComponent>
               <ButtonComponent
-                styles={{ background: "pink", borderRadius: "5px", marginLeft: '0.5rem' }}
+                styles={{
+                  background: "pink",
+                  borderRadius: "5px",
+                  marginLeft: "0.5rem",
+                  height: "2.8rem",
+                }}
                 onClick={() => {}}
                 typeButton="button"
               >

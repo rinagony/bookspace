@@ -2,7 +2,7 @@
   {
     "id": "fv54gfre",
     "title": "Alice in wonderland",
-    "category": "books",
+    "category": "fantastique",
     "description": "Alice's Adventures in Wonderland by Lewis Carroll is a story about Alice who falls down a rabbit hole and lands into a fantasy world that is full of weird, wonderful people and animals. It is classic children's book that is also popular with adults.",
     "inStock": true,
     "price": 21,
@@ -11,10 +11,91 @@
   {
     "id": "fv54gfra",
     "title": "It starts with us",
-    "category": "books",
+    "category": "romance",
     "description": "In the sequel to “It Ends With Us,” Lily deals with her jealous ex-husband as she reconnects with her first boyfriend.",
     "inStock": true,
     "price": 31,
     "image": "https://m.media-amazon.com/images/I/71PNGYHykrL._AC_UF1000,1000_QL80_.jpg"
+  },
+  {
+    "id": "fv54gf1a",
+    "title": "Campbell Biology",
+    "category": "science",
+    "description": "The Eleventh Edition of the best-selling Campbell BIOLOGY sets students on the path to success in biology through its clear and engaging narrative, superior skills instruction, innovative use of art and photos, and fully integrated media resources to enhance teaching and learning.",
+    "inStock": true,
+    "price": 31,
+    "image": "https://m.media-amazon.com/images/I/41x4UJBWIqL._SX260_.jpg"
+  },
+  {
+    "id": "fv54g1ra",
+    "title": "Learn to Earn",
+    "category": "self-help",
+    "description": "Public companies are everywhere, and they surround you from morning to night. . . . Nearly everything you eat, wear, read, listen to, ride in, lie on, or gargle with is made by one.",
+    "inStock": true,
+    "price": 31,
+    "image": "https://m.media-amazon.com/images/I/515sXquq5sL._SX564_BO1,204,203,200_.jpg"
+  },
+  {
+    "id": "fv542fra",
+    "title": "Clean Code",
+    "category": "education",
+    "description": "Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees. ",
+    "inStock": true,
+    "price": 31,
+    "image": "https://m.media-amazon.com/images/I/41xShlnTZTL._SX376_BO1,204,203,200_.jpg"
+  },
+  {
+    "id": "fv54g3ra",
+    "title": "Quantum Computing",
+    "category": "education",
+    "description": "This book integrates the foundations of quantum computing with a hands-on coding approach to this emerging field; it is the first work to bring these strands together in an updated manner. ",
+    "inStock": true,
+    "price": 31,
+    "image": "https://m.media-amazon.com/images/I/41G0JZY2BkL._SX330_BO1,204,203,200_.jpg"
+  },
+  {
+    "id": "fv544fra",
+    "title": "The Art of Public Speaking",
+    "category": "self-help",
+    "description": "The award-winning The Art of Public Speaking offers a time-tested approach that has made it the most widely used college textbook on its subject in the world.",
+    "inStock": true,
+    "price": 31,
+    "image": "https://m.media-amazon.com/images/I/41xx26u3j5L.jpg"
+  },
+  {
+    "id": "fv546fra",
+    "title": "Anatomy & Physiology For Dummies",
+    "category": "self-help",
+    "description": "Anatomy & Physiology For Dummies combines anatomical terminology and function so you'll learn not only names and terms but also gain an understanding of how the human body works.",
+    "inStock": true,
+    "price": 31,
+    "image": "https://m.media-amazon.com/images/I/51Nyi9nhp3L.jpg"
+  },
+  {
+    "id": "fv54gf5a",
+    "title": "Celebration of Discipline",
+    "category": "self-help",
+    "description": "Celebration of Discipline explores the 'classic Disciplines,' or central spiritual practices, of the Christian faith. Along the way, Foster shows that it is only by and through these practices that the true path to spiritual growth can be found.",
+    "inStock": true,
+    "price": 31,
+    "image": "https://m.media-amazon.com/images/I/51RR30JHtOL.jpg"
+  },
+  {
+    "id": "fv54g7ra",
+    "title": "Don't Say a Thing",
+    "category": "romance",
+    "description": "In a powerful true-crime memoir, an Emmy Award–winning journalist seeks closure in a decades-long series of crimes and freedom from her own personal demons.",
+    "inStock": true,
+    "price": 31,
+    "image": "https://m.media-amazon.com/images/I/51VPUZUGdgL.jpg"
+  },
+  {
+    "id": "fv548fra",
+    "title": "Life in Five Senses",
+    "category": "romance",
+    "description": "Life in Five Senses invites us into the seismic shift toward a life grounded in sensation, vitality, and innate intelligence.",
+    "inStock": true,
+    "price": 31,
+    "image": "https://m.media-amazon.com/images/I/51qJvPdESLL.jpg"
   }
 ]

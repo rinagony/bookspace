@@ -15,6 +15,9 @@ const ProductItemComponent = styled(Grid)`
   min-width: 250px;
   width: 100%;
   background: ${(props) => props.theme.colors.white};
+  -webkit-box-shadow: 0px 1px 8px 0px rgba(0, 193, 196, 0.68);
+  -moz-box-shadow: 0px 1px 8px 0px rgba(0, 193, 196, 0.68);
+  box-shadow: 0px 1px 8px 0px rgba(0, 193, 196, 0.68);
 `;
 
 const ImageContainer = styled.div`
@@ -46,6 +49,11 @@ const Paragraph = styled.p`
 const Title = styled(Paragraph)`
   font-size: 1.3rem;
   font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 function ProductItem({ data }: ProductItemPropsInterface) {
