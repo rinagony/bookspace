@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const bodyParser = require("body-parser");
 let products = require("./data/products.json");
+let about = require("./data/about.json");
 const productsSelectedFile = path.resolve(
   __dirname,
   "./data/productsSelected.json"
@@ -18,6 +19,10 @@ app.use(cors());
 
 app.get("/api/products", (req, res) => {
   res.json(products);
+});
+
+app.get("/api/about", (req, res) => {
+  res.json(about);
 });
 
 app.get("/api/productsSelected", (req, res) => {

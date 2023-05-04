@@ -46,8 +46,8 @@ function Products() {
   const handleSearchProducts = (search: string) => {
     const productsUpdated: IProduct[] = productsState.products.filter(
       (item) =>
-        item.description.toLowerCase().includes(search) ||
-        item.title.toLowerCase().includes(search)
+        item.description.toLowerCase().includes(search.toLowerCase()) ||
+        item.title.toLowerCase().includes(search.toLowerCase())
     );
     search.length !== 0
       ? setProductsFiltered(productsUpdated)

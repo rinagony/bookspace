@@ -20,5 +20,6 @@
   "primary.remove": "Remove",
   "primary.back": "Back",
   "products.search": "Search products:",
-  "products.filter": "Filter products by:"
+  "products.filter": "Filter products by:",
+  "about.title": "About Awesome store"
 }

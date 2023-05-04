@@ -23,3 +23,12 @@ export interface IInitialStateProducts {
   loading: boolean;
   error: any;
 }
+
+export interface IAboutItem {
+  image: string;
+  title: string;
+}
+
+export interface IInitialStateAbout {
+  aboutInfo: IAboutItem[]
+}

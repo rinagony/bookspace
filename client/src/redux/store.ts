@@ -8,17 +8,20 @@ import {
 import userSlice from "./user/slice";
 import thunk from "redux-thunk";
 import productsSlice from "./products/slice";
-import { IInitialStateProducts, IProduct, IUser } from "../interfaces";
+import { IInitialStateAbout, IInitialStateProducts, IUser } from "../interfaces";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import aboutSlice from "./about/slice";
 
 export interface IRootReducer {
   user: IUser;
   products: IInitialStateProducts;
+  about: IInitialStateAbout
 }
 
 const rootReducer = combineReducers<IRootReducer>({
   user: userSlice,
   products: productsSlice,
+  about: aboutSlice
 });
 
 export const store = configureStore({
