@@ -32,3 +32,12 @@ export interface IAboutItem {
 export interface IInitialStateAbout {
   aboutInfo: IAboutItem[]
 }
+
+export interface IPackage {
+  title: string;
+  secondaryTitle: string;
+  description: string[];
+  price: number;
+  image: string;
+  icon: React.ReactNode;
+}

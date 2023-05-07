@@ -6,7 +6,7 @@ const ButtonStyledComponent = styled.button`
   background: ${(props) => props.theme.colors.green300};
   color: ${(props) => props.theme.colors.white};
   border: none;
-  border-radius: 2px;
+  border-radius: 0.2rem;
   font-size: 1rem;
   display: flex;
   justify-content: center;

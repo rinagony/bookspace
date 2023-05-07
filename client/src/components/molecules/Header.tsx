@@ -57,7 +57,7 @@ const PageItem = styled.a`
   margin-left: 1.1rem;
   border-bottom: 1px solid ${(props) => props.theme.colors.black};
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 850px) {
     font-size: 0.8rem;
   }
 `;
@@ -104,9 +104,9 @@ function Header() {
 
   const pagesList = [
     { title: <FormattedMessage id="primary.products" />, link: "/products" },
-    { title: "About", link: "/about" },
-    { title: "My profile", link: "/my-profile" },
-    { title: "Contacts", link: "/contacts" },
+    { title: <FormattedMessage id="primary.about" />, link: "/about" },
+    { title: <FormattedMessage id="primary.my-profile" />, link: "/my-profile" },
+    { title: <FormattedMessage id="primary.contacts" />, link: "/contacts" },
   ];
   return (
     <HeaderTopComponent>

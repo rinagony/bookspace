@@ -1,6 +1,6 @@
 {
-  "primary.products": "Products",
-  "primary.about": "About",
+  "primary.products": "Our books",
+  "primary.about": "About & Packages",
   "primary.my-profile": "My profile",
   "primary.contacts": "Contacts",
   "primary.app-title": "Awesome store",
@@ -15,11 +15,13 @@
   "product.added": "Product have been added to the busket",
   "product.removed": "Your book have been removed from the busket",
   "products.add": "Add to busket",
+  "products.reservation": "Make a resetvation",
   "products.favorites": "Favorite",
   "primary.learn": "Learn more..",
   "primary.remove": "Remove",
   "primary.back": "Back",
   "products.search": "Search products:",
   "products.filter": "Filter products by:",
-  "about.title": "About Awesome store"
+  "about.title": "About Awesome store",
+  "about.check-packages": "Check out our visit-packs:"
 }

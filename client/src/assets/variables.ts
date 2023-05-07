@@ -7,4 +7,5 @@ export const colors = {
   lightGreen: '#e0f2f1',
   primary: '#80cbc4',
   red: "#ff8282",
+  lightWhite: "rgb(253 253 253)"
 }
