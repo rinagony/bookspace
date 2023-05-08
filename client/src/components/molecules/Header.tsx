@@ -53,13 +53,10 @@ const PageItem = styled.a`
   color: ${(props) => props.theme.colors.black};
   font-weight: 600;
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin-left: 1.1rem;
   border-bottom: 1px solid ${(props) => props.theme.colors.black};
-
-  @media screen and (max-width: 850px) {
-    font-size: 0.8rem;
-  }
+  white-space: nowrap;
 `;
 
 const ExitButton = styled(IconButton)`
@@ -87,6 +84,17 @@ const HeaderButtonContainer = styled(Grid)`
   }
 `;
 
+const WrapperPageItems = styled.div`
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    justify-content: flex-around;
+    align-items: center;
+  }
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+`;
+
 function Header() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -105,39 +113,37 @@ function Header() {
   const pagesList = [
     { title: <FormattedMessage id="primary.products" />, link: "/products" },
     { title: <FormattedMessage id="primary.about" />, link: "/about" },
-    { title: <FormattedMessage id="primary.my-profile" />, link: "/my-profile" },
+    {
+      title: <FormattedMessage id="primary.my-profile" />,
+      link: "/my-profile",
+    },
     { title: <FormattedMessage id="primary.contacts" />, link: "/contacts" },
   ];
   return (
     <HeaderTopComponent>
       <Container maxWidth="lg">
         <Grid container spacing={3}>
-          <Grid item xs={12} md={3} lg={3}>
+          <Grid item xs={12} md={3}>
             <Logo />
           </Grid>
-          <Grid
-            item
-            xs={12}
-            md={5}
-            lg={5}
-            justifyContent="center"
-            display="flex"
-          >
-            {pagesList.map((item, index) => (
-              <PageItem
-                style={
-                  item.link === location.pathname
-                    ? { color: "#004d40" }
-                    : { color: "#212121" }
-                }
-                key={index}
-                onClick={() => navigate(item.link)}
-              >
-                {item.title}
-              </PageItem>
-            ))}
+          <Grid item xs={12} md={5}>
+            <WrapperPageItems>
+              {pagesList.map((item, index) => (
+                <PageItem
+                  style={
+                    item.link === location.pathname
+                      ? { color: "#004d40" }
+                      : { color: "#212121" }
+                  }
+                  key={index}
+                  onClick={() => navigate(item.link)}
+                >
+                  {item.title}
+                </PageItem>
+              ))}
+            </WrapperPageItems>
           </Grid>
-          <HeaderButtonContainer item xs={12} md={4} lg={4}>
+          <HeaderButtonContainer item xs={12} md={4}>
             <ExitButton>
               <ExitIcon />
               <FormattedMessage id="primary.exit" />

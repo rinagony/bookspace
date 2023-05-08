@@ -3,10 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { type RootState } from "../../redux/store";
 import { Layout } from "../molecules";
 import { useParams } from "react-router-dom";
-import { ButtonComponent, NoData } from "../atoms";
+import { Alert, ButtonComponent, NoData } from "../atoms";
 import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
-import { Alert, Grid, Snackbar } from "@mui/material";
+import { Grid, Snackbar } from "@mui/material";
 import { IProduct } from "../../interfaces";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import {
@@ -113,20 +113,7 @@ function SingleProduct() {
 
   return (
     <Layout>
-      <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "left" }}
-        open={alert}
-        autoHideDuration={3000}
-        onClose={() => setAlert(false)}
-      >
-        <Alert
-          onClose={() => setAlert(false)}
-          severity="success"
-          sx={{ width: "100%" }}
-        >
-          <FormattedMessage id="product.added" />
-        </Alert>
-      </Snackbar>
+      <Alert alert={alert} setAlert={setAlert} message="product.added" />
       {!productSelected ? (
         <NoData />
       ) : (

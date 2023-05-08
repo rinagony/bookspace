@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid} from "@mui/material";
 import * as React from "react";
 import { useState } from "react";
 import styled from "styled-components";
@@ -10,6 +10,10 @@ import book from "./../../assets/images/books.jpg";
 import { ButtonComponent } from "../atoms";
 import { FormattedMessage } from "react-intl";
 import { IPackage } from "../../interfaces";
+import dayjs, { Dayjs } from "dayjs";
+import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const TabsHeader = styled(Grid)`
   width: 100%;
@@ -19,17 +23,19 @@ const TabsHeader = styled(Grid)`
 
 const TabsHeaderItem = styled(Grid)`
   text-align: center;
-  border: 3px solid ${(props) => props.theme.colors.green100};
+  border: 3px solid ${(props) => props.theme.colors.white};
   margin: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 0.3rem;
-  padding: 0.6rem 0.4rem;
+  padding: 0.4rem;
   background: ${(props) => props.theme.colors.lightWhite};
   cursor: pointer;
   &.active-tab {
-    background: ${(props) => props.theme.colors.white};
+    -webkit-box-shadow: 0px 1px 8px 0px rgba(0, 193, 196, 0.68);
+    -moz-box-shadow: 0px 1px 8px 0px rgba(0, 193, 196, 0.68);
+    box-shadow: 0px 1px 8px 0px rgba(0, 193, 196, 0.68);
   }
   svg {
     color: ${(props) => props.theme.colors.red};
@@ -60,7 +66,10 @@ const TabsBody = styled(Grid)`
   border-radius: 0.5rem;
   background-position: center;
   background-size: cover;
+  display: flex;
+  justify-content: flex-end;
   background-repeat: no-repeat;
+  font-weight: 600;
   ul {
     padding-left: 1rem;
   }
@@ -69,10 +78,11 @@ const TabsBody = styled(Grid)`
   }
 `;
 
-const Title = styled.h3`
+const Title = styled.div`
   font-size: 1.1rem;
   text-align: center;
   margin-bottom: 0;
+  margin-top: 0;
   font-weight: 600;
 `;
 
@@ -85,19 +95,24 @@ const Price = styled.p`
   font-size: 2rem;
   text-align: right;
   font-weight: 600;
+  text-align: right;
 `;
 
-const WrapperButton = styled.div`
+const TabsReservation = styled(Grid)`
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: space-between;
+  @media screen and (max-width: 600px) {
+    padding-top: 3rem;
+  }
 `;
 
 interface TabsProps {
-  handleOnClick: (pack: IPackage) => void;
+  handleAdd: (pack: IPackage) => void;
 }
 
-function Tabs({handleOnClick}: TabsProps) {
+function Tabs({ handleAdd }: TabsProps) {
   const [activeTab, setActiveTab] = useState(0);
   const packages: IPackage[] = [
     {
@@ -139,9 +154,17 @@ function Tabs({handleOnClick}: TabsProps) {
       icon: <LocalFireDepartmentIcon />,
     },
   ];
-
+  const [calendarValue, setCalendarValue] = useState<Dayjs | null>(
+    dayjs(new Date().toISOString().slice(0, 10))
+  );
   const onChangeTab = (index: number) => {
     setActiveTab(index);
+  };
+  const onReserve = (pack: IPackage) => {
+    if(calendarValue) {
+      pack.date = calendarValue.format('DD/MM/YYYY')
+      handleAdd(pack);
+    }
   };
 
   return (
@@ -164,20 +187,41 @@ function Tabs({handleOnClick}: TabsProps) {
         <IconDown fontSize="large" />
       </WrapperIcon>
       <WrapperTabBody container>
-        <TabsBody item sm={12} md={7}>
+        <TabsBody item sm={7} flexDirection={'column'}>
           <Title>{packages[activeTab].secondaryTitle}</Title>
           <ul>
             {packages[activeTab].description.map((item, index) => (
               <li key={index}>{item}</li>
             ))}
           </ul>
-          <WrapperButton>
-            <ButtonComponent styles={{height: '2rem'}} typeButton="button" onClick={() => handleOnClick(packages[activeTab])}>
-              <FormattedMessage id="products.reservation" />
-            </ButtonComponent>
-            <Price>{packages[activeTab].price} €</Price>
-          </WrapperButton>
+          <Price>{packages[activeTab].price} €</Price>
         </TabsBody>
+        <TabsReservation flexDirection={"column"} item sm={5}>
+          <Title>
+            <FormattedMessage id="products.reservation" />
+          </Title>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DateCalendar
+              value={calendarValue}
+              sx={[
+                {
+                  '.Mui-selected': {
+                    backgroundColor: `#b2dfdb !important`,
+                  },
+                }
+              ]}
+              onChange={(value: any) => setCalendarValue(value)}
+            />
+          </LocalizationProvider>
+
+          <ButtonComponent
+            styles={{ height: "2rem" }}
+            typeButton="submit"
+            onClick={() => onReserve(packages[activeTab])}
+          >
+            <FormattedMessage id="products.add" />
+          </ButtonComponent>
+        </TabsReservation>
       </WrapperTabBody>
     </>
   );

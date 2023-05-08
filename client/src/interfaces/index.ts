@@ -1,3 +1,5 @@
+import { Dayjs } from "dayjs";
+
 export interface IProduct {
   id: string;
   title: string;
@@ -24,13 +26,8 @@ export interface IInitialStateProducts {
   error: any;
 }
 
-export interface IAboutItem {
-  image: string;
-  title: string;
-}
-
 export interface IInitialStateAbout {
-  aboutInfo: IAboutItem[]
+  aboutInfo: IAbout | null;
 }
 
 export interface IPackage {
@@ -40,4 +37,20 @@ export interface IPackage {
   price: number;
   image: string;
   icon: React.ReactNode;
+  date?: string;
+}
+
+export interface IModalReservation{
+  show: boolean;
+  item: IPackage | null;
+}
+
+export interface IAbout {
+  aboutHeader1: string;
+  aboutParagraph1:  string;
+  aboutHeader2:  string;
+  aboutParagraph2: string;
+  aboutHeader3:  string;
+  aboutParagraph3:  string;
+  images: string[]
 }

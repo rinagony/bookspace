@@ -1,14 +1,20 @@
-import React, { useEffect } from "react";
-import { Carousel, Layout, Tabs } from "../molecules";
+import React, { useEffect, useState } from "react";
+import { Carousel, FormReservation, Layout, Tabs } from "../molecules";
 import { FormattedMessage } from "react-intl";
 import styled from "styled-components";
-import { IAboutItem, IInitialStateAbout, IPackage } from "../../interfaces";
+import { IPackage, IModalReservation, IAbout } from "../../interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/store";
 import { getAboutAction } from "../../redux/about/actions";
-import { Grid } from "@mui/material";
+import {
+  Dialog,
+  DialogActions,
+  DialogTitle,
+  Grid,
+} from "@mui/material";
 import { Link } from "react-router-dom";
+import { Alert, ButtonComponent } from "../atoms";
 
 const Title = styled.h2`
   font-size: 1.3rem;
@@ -37,81 +43,120 @@ const TitleSmall = styled(Title)`
 `;
 
 const DescriptionBlock = styled(Grid)`
-  padding-left: 1rem;
+  padding-left: 1.5rem;
   @media screen and (max-width: 900px) {
     paddding-left: 0;
     margin-top: 2rem;
+  }
+  a {
+    color: ${(props) => props.theme.colors.red};
   }
 `;
 
 const SubTitle = styled.h3`
   font-size: 1rem;
+  margin: 0.7rem 0;
   font-weight: 600;
-`
+`;
 
 const Description = styled.p`
   margin: 0;
-`
+`;
+
+const DialogBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+`;
 
 function About() {
   const dispatch = useDispatch<ThunkDispatch<RootState, void, AnyAction>>();
-  const aboutInfo: IAboutItem[] = useSelector(
+  const aboutInfo: IAbout | null = useSelector(
     (state: RootState) => state.about.aboutInfo
   );
+  const [alert, setAlert] = useState(false);
+  const [modal, setModal] = useState<IModalReservation>({
+    show: false,
+    item: null,
+  });
 
   useEffect(() => {
     dispatch(getAboutAction());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onAddPackage = (pack: IPackage) => {
-    console.log(pack, 'onAdd')
-  }
+  const handleAdd = (pack: IPackage) => {
+    if (pack.date) {
+      setModal({ show: true, item: pack });
+    }
+  };
+
+  const handleClose = () => {
+    setModal({
+      show: false,
+      item: null,
+    });
+  };
 
   return (
     <Layout>
+      <Alert alert={alert} setAlert={setAlert} message="product.added" />
       <Grid container columnSpacing={{ xs: 1, sm: 2 }}>
         <Grid item xs={12} lg={2}>
-          Addvertise
+          Adds content
         </Grid>
-        <AboutComponent item xs={12} lg={10}>
-          <Title>
-            <FormattedMessage id="about.title" />
-          </Title>
-          <WrapperCarousel container>
-            <CarouselItem sm={12} md={7}>
-              <Carousel carouselItems={aboutInfo} />
-            </CarouselItem>
-            <DescriptionBlock sm={12} md={5}>
-              <Description>
-                Awesome store is the
-                single most important European travel bookshop. This spacious
-                store offers a selection of books, maps, conferences, coworking
-                spaces and bar. Founded in 1996, "Awesome"  is a store dedicated to all
-                nature lovers, home of the largest natural history book collection
-                in the world! Visitors can find books on entomology,
-                botany, geology, environmental sciences, meteorology,
-                engineering and astronomy.
-              </Description>
-              <SubTitle>Conferences:</SubTitle>
-              <Description>
-                In our book store there are many events and conferences. The
-                most famous writers performed in our stage, presenting their new
-                books. Check out events <Link to="/about#events">below</Link>
-              </Description>
-              <SubTitle>Coworking spaces:</SubTitle>
-              <Description>
-                In our book store there is a fancy Bar called Charles Darvin.
-                You can check out its menu <Link to="/about#events">here</Link>
-              </Description>
-            </DescriptionBlock>
-          </WrapperCarousel>
-          <TitleSmall>
-            <FormattedMessage id="about.check-packages" />
-          </TitleSmall>
-          <Tabs handleOnClick={onAddPackage}/>
-        </AboutComponent>
+        {aboutInfo ? (
+          <AboutComponent item xs={12} lg={10}>
+            <Title>{aboutInfo.aboutHeader1}</Title>
+            <WrapperCarousel container>
+              <CarouselItem sm={12} md={7}>
+                <Carousel images={aboutInfo.images} />
+              </CarouselItem>
+              <DescriptionBlock sm={12} md={5}>
+                <Description>{aboutInfo.aboutParagraph1}</Description>
+                <SubTitle>{aboutInfo.aboutHeader2}</SubTitle>
+                <Description>
+                  {aboutInfo.aboutParagraph2}
+                  <Link to="/about#events">below</Link>
+                </Description>
+                <SubTitle>{aboutInfo.aboutHeader3}</SubTitle>
+                <Description>
+                  {aboutInfo.aboutParagraph3}
+                  <Link to="/about#events">here</Link>
+                </Description>
+              </DescriptionBlock>
+            </WrapperCarousel>
+            <TitleSmall>
+              <FormattedMessage id="about.check-packages" />
+            </TitleSmall>
+            <Tabs handleAdd={handleAdd} />
+          </AboutComponent>
+        ) : (
+          <FormattedMessage id="primary.no-data" />
+        )}
       </Grid>
+      <Dialog
+        open={modal.show}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title"><FormattedMessage id="products.reservation" /></DialogTitle>
+        <DialogBody>
+          <FormReservation item={modal.item}>
+            <DialogActions>
+              <ButtonComponent
+                typeButton="submit"
+                styles={{ background: "#ff8282" }}
+              >
+                <FormattedMessage id="primary.send" />
+              </ButtonComponent>
+              <ButtonComponent typeButton="button" onClick={handleClose}>
+                <FormattedMessage id="primary.cancel" />
+              </ButtonComponent>
+            </DialogActions>
+          </FormReservation>
+        </DialogBody>
+      </Dialog>
     </Layout>
   );
 }

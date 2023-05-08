@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-import { IAboutItem } from "../../interfaces";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 
@@ -51,10 +50,10 @@ const Image = styled.img`
 `;
 
 interface CarouselProps {
-  carouselItems: IAboutItem[];
+  images: string[];
 }
 
-function CarouselComponent({ carouselItems }: CarouselProps) {
+function CarouselComponent({ images }: CarouselProps) {
   return (
     <CarouselItself
       infiniteLoop
@@ -76,10 +75,10 @@ function CarouselComponent({ carouselItems }: CarouselProps) {
       showIndicators={false}
       showThumbs={false}
     >
-      {carouselItems.map((item, index) => (
+      {images.map((item: string, index) => (
         <CarouselItem>
           <ImageWrapper>
-            <Image src={item.image} />
+            <Image src={item} />
           </ImageWrapper>
         </CarouselItem>
       ))}

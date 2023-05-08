@@ -3,7 +3,7 @@ import { IInitialStateAbout } from "../../interfaces";
 import { getAboutAction } from "./actions";
 
 const InitialState: IInitialStateAbout = {
-  aboutInfo: []
+  aboutInfo: null
 };
 
 export const aboutSlice = createSlice({
