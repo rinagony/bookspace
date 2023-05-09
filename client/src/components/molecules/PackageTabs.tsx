@@ -19,6 +19,9 @@ const TabsHeader = styled(Grid)`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 600px) {
+    justify-content: center !important;
+  }
 `;
 
 const TabsHeaderItem = styled(Grid)`
@@ -39,6 +42,10 @@ const TabsHeaderItem = styled(Grid)`
   }
   svg {
     color: ${(props) => props.theme.colors.red};
+  }
+
+  @media screen and (max-width: 600px) {
+    margin: 0.5rem !important;
   }
 `;
 
@@ -69,6 +76,9 @@ const TabsBody = styled(Grid)`
   display: flex;
   justify-content: flex-end;
   background-repeat: no-repeat;
+  @media screen and (max-width: 900px) {
+    font-size: 0.8rem;
+  }
   font-weight: 600;
   ul {
     padding-left: 1rem;
@@ -112,7 +122,7 @@ interface TabsProps {
   handleAdd: (pack: IPackage) => void;
 }
 
-function Tabs({ handleAdd }: TabsProps) {
+function PackageTabs({ handleAdd }: TabsProps) {
   const [activeTab, setActiveTab] = useState(0);
   const packages: IPackage[] = [
     {
@@ -187,7 +197,7 @@ function Tabs({ handleAdd }: TabsProps) {
         <IconDown fontSize="large" />
       </WrapperIcon>
       <WrapperTabBody container>
-        <TabsBody item sm={7} flexDirection={'column'}>
+        <TabsBody item sm={5} md={7} flexDirection={'column'}>
           <Title>{packages[activeTab].secondaryTitle}</Title>
           <ul>
             {packages[activeTab].description.map((item, index) => (
@@ -196,7 +206,7 @@ function Tabs({ handleAdd }: TabsProps) {
           </ul>
           <Price>{packages[activeTab].price} €</Price>
         </TabsBody>
-        <TabsReservation flexDirection={"column"} item sm={5}>
+        <TabsReservation flexDirection={"column"} item sm={7} md={5}>
           <Title>
             <FormattedMessage id="products.reservation" />
           </Title>
@@ -219,7 +229,7 @@ function Tabs({ handleAdd }: TabsProps) {
             typeButton="submit"
             onClick={() => onReserve(packages[activeTab])}
           >
-            <FormattedMessage id="products.add" />
+            <FormattedMessage id="about.reserve" />
           </ButtonComponent>
         </TabsReservation>
       </WrapperTabBody>
@@ -227,4 +237,4 @@ function Tabs({ handleAdd }: TabsProps) {
   );
 }
 
-export default Tabs;
+export default PackageTabs;

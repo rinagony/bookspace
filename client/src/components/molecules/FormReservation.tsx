@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { FormHelperText, Grid, Input, InputLabel } from "@mui/material";
 import styled from "styled-components";
-import { IPackage } from "../../interfaces";
+import { IPackage, IReservationInfo } from "../../interfaces";
 import { useForm } from "react-hook-form";
 import { FormattedMessage } from "react-intl";
+import { useDispatch } from "react-redux";
+import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
+import { addReservation } from "../../redux/about/actions";
+import { RootState } from "../../redux/store";
+import { Alert } from "../atoms";
 
 interface FormReservationProps {
   item: IPackage | null;
@@ -14,6 +19,13 @@ const Container = styled.div`
   padding-top: 2rem 1rem;
 `;
 
+const Info = styled.p`
+  span {
+    margin-left: 0.5rem;
+    font-weight: 600;
+  }
+`;
+
 const FormItem = styled.div`
   padding: 1rem;
 `;
@@ -22,31 +34,65 @@ function FormReservation({ item, children }: FormReservationProps) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
+  const [snackbarStatus, setSnackbarStatus] = useState<{
+    show: boolean;
+    error: boolean;
+    email?: string;
+  }>({ show: false, error: false });
+
+  const dispatch = useDispatch<ThunkDispatch<RootState, void, AnyAction>>();
 
   const onSubmitReservation = (data: any) => {
+    if (item) {
+      const reservationInfo: IReservationInfo = {
+        packageTitle: item.title,
+        email: data.email,
+        lastName: data.lastName,
+        name: data.name,
+        phone: data.phone,
+      };
+      dispatch(addReservation(reservationInfo))
+        .then(() => {
+          setSnackbarStatus({ show: true, error: false, email: data.email })
+          reset();
+        }
+        )
+        .catch(() => setSnackbarStatus({ show: true, error: false }));
+      console.log(reservationInfo, "reservationInfo");
+    }
+
     console.log("onSubmitFomr", data);
   };
   return (
     <Container>
-      <p>
+      <Alert
+        alert={snackbarStatus.show}
+        error={snackbarStatus.error}
+        setAlert={() =>
+          setSnackbarStatus({ show: false, error: false, email: "" })
+        }
+        message={
+          snackbarStatus.error
+            ? <FormattedMessage id="error.occured"/>
+            : <FormattedMessage id="form.sent" values={{val: snackbarStatus.email}}/> 
+        }
+      />
+      <Info>
         <FormattedMessage id="form.date" /> <span>{item?.date}</span>
-      </p>
-      <p>
+      </Info>
+      <Info>
         <FormattedMessage id="form.package" />
         <span>
           {item?.title} ({item?.secondaryTitle})
         </span>
-      </p>
-      <p>
-        <FormattedMessage id="form.packacge" />
+      </Info>
+      <Info>
         <FormattedMessage id="form.price" />
-        <span>{item?.price}</span>
-      </p>
-      <h3>
-        <FormattedMessage id="form.reservation-title" />
-      </h3>
+        <span>{item?.price} Є</span>
+      </Info>
       <form onSubmit={handleSubmit(onSubmitReservation)}>
         <Grid container>
           <Grid item xs={6}>
@@ -83,7 +129,7 @@ function FormReservation({ item, children }: FormReservationProps) {
               )}
             </FormItem>
           </Grid>
-          <Grid xs={6}>
+          <Grid item xs={6}>
             <FormItem>
               <InputLabel htmlFor="email">
                 <FormattedMessage id="form.email" />
@@ -114,7 +160,7 @@ function FormReservation({ item, children }: FormReservationProps) {
                 type="phone"
                 {...register("phone", {
                   required: true,
-                  pattern: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
+                  pattern: /^\+?[1-9][0-9]{7,14}$/,
                 })}
               />
               {errors.phone && errors.phone.type === "required" && (

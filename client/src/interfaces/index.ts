@@ -54,3 +54,11 @@ export interface IAbout {
   aboutParagraph3:  string;
   images: string[]
 }
+
+export interface IReservationInfo {
+  packageTitle: string,
+  email: string,
+  lastName: string,
+  name: string,
+  phone: string,
+}

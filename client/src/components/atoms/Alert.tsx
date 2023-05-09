@@ -1,28 +1,26 @@
 import { Alert, Snackbar } from "@mui/material";
 import React, { Dispatch, SetStateAction } from "react";
-import { FormattedMessage } from "react-intl";
-import styled from "styled-components";
 
 interface AlertComponentProps {
-  message: string;
+  message: React.ReactNode;
   alert: boolean;
   setAlert: Dispatch<SetStateAction<boolean>>;
+  error?: boolean;
 }
 
-function AlertComponent({ message, alert, setAlert }: AlertComponentProps) {
+function AlertComponent({ message, alert, setAlert, error }: AlertComponentProps) {
   return (
     <Snackbar
       anchorOrigin={{ vertical: "top", horizontal: "left" }}
       open={alert}
-      autoHideDuration={3000}
       onClose={() => setAlert(false)}
+      sx={{ width: '100%' }}
     >
       <Alert
         onClose={() => setAlert(false)}
-        severity="success"
-        sx={{ width: "100%" }}
+        severity={error ? "error" : "success"}
       >
-        <FormattedMessage id={message} />
+        {message}
       </Alert>
     </Snackbar>
   );

@@ -76,7 +76,7 @@ function CarouselComponent({ images }: CarouselProps) {
       showThumbs={false}
     >
       {images.map((item: string, index) => (
-        <CarouselItem>
+        <CarouselItem key={index}>
           <ImageWrapper>
             <Image src={item} />
           </ImageWrapper>

@@ -8,6 +8,10 @@ const productsSelectedFile = path.resolve(
   __dirname,
   "./data/productsSelected.json"
 );
+const reservationListFile = path.resolve(
+  __dirname,
+  "./data/reservationList.json"
+);
 const cors = require("cors");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
@@ -69,6 +73,27 @@ app.post("/api/productsSelected", (req, res) => {
         return res.status(500).json({ error: "Failed to write file" });
       }
       res.json(allProducts);
+    });
+  });
+});
+
+app.post("/api/addReservation", (req, res) => {
+  const newReservation = req.body;
+  fs.readFile(reservationListFile, "utf8", (err, data) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Failed to read file" });
+    }
+
+    const allReservations = JSON.parse(data);
+    allReservations.push(newReservation);
+
+    fs.writeFile(reservationListFile, JSON.stringify(allReservations), (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Failed to write file" });
+      }
+      res.status(201).json({status: 201})
     });
   });
 });

@@ -90,6 +90,9 @@ function Products() {
               handleSearchData={handleSearchProducts}
               handleFilterData={handleFilterData}
             />
+            <div>
+              Ads content
+            </div>
           </Grid>
           <Grid item xs={12} lg={10}>
             <ProductList

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import { Container, Grid } from "@mui/material";
-import { Logo } from "../atoms";
-import { ExitToApp } from "@mui/icons-material";
+import { Logo, Navigation } from "../atoms";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
 import { IProductSelected } from "../../interfaces";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import LoginIcon from '@mui/icons-material/Login';
 
 const HeaderTopComponent = styled.div`
   padding: 1rem 0;
@@ -22,7 +22,7 @@ const iconStyles = css`
   margin-right: 0.5rem;
 `;
 
-const ExitIcon = styled(ExitToApp)`
+const LoginIconComponent = styled(LoginIcon)`
   ${iconStyles}
 `;
 
@@ -47,16 +47,6 @@ const IconButton = styled.button`
 
 const IconButtonBasket = styled(IconButton)`
   position: relative;
-`;
-
-const PageItem = styled.a`
-  color: ${(props) => props.theme.colors.black};
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 1rem;
-  margin-left: 1.1rem;
-  border-bottom: 1px solid ${(props) => props.theme.colors.black};
-  white-space: nowrap;
 `;
 
 const ExitButton = styled(IconButton)`
@@ -84,20 +74,8 @@ const HeaderButtonContainer = styled(Grid)`
   }
 `;
 
-const WrapperPageItems = styled.div`
-  @media screen and (max-width: 600px) {
-    flex-direction: column;
-    justify-content: flex-around;
-    align-items: center;
-  }
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-`;
-
 function Header() {
   const navigate = useNavigate();
-  const location = useLocation();
   const productsSelected: IProductSelected[] = useSelector(
     (state: RootState) => state.products.productsSelected
   );
@@ -127,26 +105,12 @@ function Header() {
             <Logo />
           </Grid>
           <Grid item xs={12} md={5}>
-            <WrapperPageItems>
-              {pagesList.map((item, index) => (
-                <PageItem
-                  style={
-                    item.link === location.pathname
-                      ? { color: "#004d40" }
-                      : { color: "#212121" }
-                  }
-                  key={index}
-                  onClick={() => navigate(item.link)}
-                >
-                  {item.title}
-                </PageItem>
-              ))}
-            </WrapperPageItems>
+            <Navigation />
           </Grid>
           <HeaderButtonContainer item xs={12} md={4}>
             <ExitButton>
-              <ExitIcon />
-              <FormattedMessage id="primary.exit" />
+              <LoginIconComponent />
+              <FormattedMessage id="primary.login" />
             </ExitButton>
             <IconButton>
               <FavoritesIcon />

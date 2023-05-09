@@ -1,10 +1,11 @@
 {
   "primary.products": "Our books",
   "primary.about": "About & Packages",
-  "primary.my-profile": "My profile",
+  "primary.my-profile": "Old Bar",
   "primary.contacts": "Contacts",
-  "primary.app-title": "Awesome store",
+  "primary.app-title": "Bookspace",
   "primary.exit": "Exit",
+  "primary.login": "Log In",
   "primary.no-data": "Sorry, there is no data",
   "category": "Category: ",
   "title": "Title: ",
@@ -12,6 +13,7 @@
   "products.price": "Price: ",
   "products.amount": "Amount: ",
   "error.reload": "Please, reload page. Error occured:",
+  "error.occured": "Error occured! Please, try again",
   "product.added": "Product have been added to the busket",
   "product.removed": "Your book have been removed from the busket",
   "products.add": "Add to busket",
@@ -22,7 +24,7 @@
   "primary.back": "Back",
   "products.search": "Search products:",
   "products.filter": "Filter products by:",
-  "about.check-packages": "Check out our visit-packs:",
+  "about.check-packages": "Our coworking-packs:",
   "primary.cancel": "Cancel",
   "primary.send": "Send",
   "form.date": "Date:",
@@ -38,5 +40,8 @@
   "form.email-validation-pattern": "Email is not valid",
   "form.phone": "Phone number:",
   "form.phone-validation-req": "Phone number is required",
-  "form.phone-validation-pattern": "Phone number is not valid"
+  "form.phone-validation-pattern": "Phone number is not valid",
+  "about.reserve": "Reserve",
+  "form.sent": "Successfully sent! Our administrator will contact you soon by your email {val}",
+  "primary.privacy": "Copyright 2023 legalvision use of legalvision.co.es is subject to our terms of use and privacy policy. Legalisation law Spain ltd is authorised and regulated by the solicitors regulation authority."
 }

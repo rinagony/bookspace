@@ -5,3 +5,5 @@ export { default as SkeletonCard } from "./skeletons/SkeletonCard";
 export { default as NoData } from "./NoData";
 export { default as Select } from "./Select";
 export { default as Alert } from "./Alert";
+export { default as Modal } from "./Modal";
+export { default as Navigation } from "./Navigation";

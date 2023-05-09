@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IInitialStateAbout } from "../../interfaces";
-import { getAboutAction } from "./actions";
+import { addReservation, getAboutAction } from "./actions";
 
 const InitialState: IInitialStateAbout = {
   aboutInfo: null
