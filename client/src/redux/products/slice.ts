@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IInitialStateProducts } from "../../interfaces";
-import { addProductToBasket, getAllProductsAction, getProductsFromBasket } from "./actions";
+import {
+  getAllProductsAction,
+  getProductsFromBasket,
+} from "./actions";
 
 const InitialState: IInitialStateProducts = {
   products: [],
@@ -29,8 +32,8 @@ export const productsSlice = createSlice({
       })
       .addCase(getProductsFromBasket.fulfilled, (state, action) => {
         state.productsSelected = action.payload;
-      })
-  }
+      });
+  },
 });
 
 export const { setProductsSelected } = productsSlice.actions;

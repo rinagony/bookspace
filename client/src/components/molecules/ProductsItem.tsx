@@ -29,12 +29,12 @@ const ImageContainer = styled.div`
   border-radius: 5px;
 `;
 
-const Paragraph = styled.p`
+const Description = styled.p`
   margin-top: 10px;
   margin-bottom: 0;
   margin-left: 0;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -46,7 +46,7 @@ const Paragraph = styled.p`
   }
 `;
 
-const Title = styled(Paragraph)`
+const Title = styled(Description)`
   font-size: 1.3rem;
   font-weight: 600;
   display: -webkit-box;
@@ -55,6 +55,17 @@ const Title = styled(Paragraph)`
   overflow: hidden;
   text-overflow: ellipsis;
 `;
+
+const Price = styled.p`
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-align: right;
+  color: ${(props) => props.theme.colors.darkGreen};
+  margin-right: 0;
+  margin-left: 0;
+  margin-bottom: 0;
+  margin-top: 0.5rem;
+`
 
 function ProductItem({ data }: ProductItemPropsInterface) {
   const navigate = useNavigate();
@@ -78,10 +89,11 @@ function ProductItem({ data }: ProductItemPropsInterface) {
         />
       </ImageContainer>
       <Title>{data.title}</Title>
-      <Paragraph>{data.description}</Paragraph>
+      <Description>{data.description}</Description>
+      <Price>{data.price} Є</Price>
       <ButtonComponent
         onClick={handleOnClick}
-        styles={{ marginTop: "1.5rem" }}
+        styles={{ marginTop: "1rem" }}
         typeButton="button"
       >
         <FormattedMessage id="primary.learn" />

@@ -11,7 +11,7 @@ interface AlertComponentProps {
 function AlertComponent({ message, alert, setAlert, error }: AlertComponentProps) {
   return (
     <Snackbar
-      anchorOrigin={{ vertical: "top", horizontal: "left" }}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
       open={alert}
       onClose={() => setAlert(false)}
       sx={{ width: '100%' }}

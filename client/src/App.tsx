@@ -4,7 +4,7 @@ import {
   About,
   Basket,
   Contacts,
-  MyProfile,
+  OurBar,
   NotFound,
   Products,
   SingleProduct,
@@ -28,7 +28,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate replace to="/products" />} />
-          <Route path="/my-profile" element={<MyProfile />} />
+          <Route path="/our-bar" element={<OurBar />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<SingleProduct />} />
           <Route path="/about" element={<About />} />

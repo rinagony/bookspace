@@ -7,6 +7,7 @@ const NoDataComponent = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   h2 {
     text-align: center;
@@ -14,12 +15,18 @@ const NoDataComponent = styled.div`
   }
 `;
 
-function NoData() {
+interface NoDataProps {
+  message?: string;
+  children?: React.ReactNode;
+}
+
+function NoData({message, children}: NoDataProps) {
   return (
     <NoDataComponent>
       <h2>
-        <FormattedMessage id={"primary.no-data"} />
+        <FormattedMessage id={message ? message : "primary.no-data"} />
       </h2>
+      {children ? children : false}
     </NoDataComponent>
   );
 }

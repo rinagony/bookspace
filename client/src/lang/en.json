@@ -1,7 +1,7 @@
 {
   "primary.products": "Our books",
   "primary.about": "About & Packages",
-  "primary.my-profile": "Old Bar",
+  "primary.our-bar": "Old Bar",
   "primary.contacts": "Contacts",
   "primary.app-title": "Bookspace",
   "primary.exit": "Exit",
@@ -12,11 +12,11 @@
   "products.in-stock": "In stock: ",
   "products.price": "Price: ",
   "products.amount": "Amount: ",
-  "error.reload": "Please, reload page. Error occured:",
+  "error.reload": "Please, reload page. Error occured",
   "error.occured": "Error occured! Please, try again",
-  "product.added": "Product have been added to the busket",
-  "product.removed": "Your book have been removed from the busket",
-  "products.add": "Add to busket",
+  "product.added": "Product added to the basket",
+  "product.removed": "Your book have been removed from the basket",
+  "products.add": "Add to basket",
   "products.reservation": "Make a reservation",
   "products.favorites": "Favorite",
   "primary.learn": "Learn more..",
@@ -43,5 +43,8 @@
   "form.phone-validation-pattern": "Phone number is not valid",
   "about.reserve": "Reserve",
   "form.sent": "Successfully sent! Our administrator will contact you soon by your email {val}",
-  "primary.privacy": "Copyright 2023 legalvision use of legalvision.co.es is subject to our terms of use and privacy policy. Legalisation law Spain ltd is authorised and regulated by the solicitors regulation authority."
+  "primary.privacy": "Copyright 2023 legalvision use of legalvision.co.es is subject to our terms of use and privacy policy. Legalisation law Spain ltd is authorised and regulated by the solicitors regulation authority.",
+  "primary.shopping": "Go shopping",
+  "basket.empty": "Your basket is empty",
+  "products.sort": "Sort products:"
 }

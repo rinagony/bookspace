@@ -29,8 +29,8 @@ function SelectComponent({ handleFilterData }: FilterFieldProps) {
           label={defaultValue}
           onChange={handleSelect}
         >
-          {menuItems.map((item) => (
-            <MenuItem value={item}>{item}</MenuItem>
+          {menuItems.map((item, index) => (
+            <MenuItem key={index} value={item}>{item}</MenuItem>
           ))}
         </Select>
       </FormControl>

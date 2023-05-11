@@ -33,13 +33,11 @@ function Navigation() {
     { title: <FormattedMessage id="primary.products" />, link: "/products" },
     { title: <FormattedMessage id="primary.about" />, link: "/about" },
     {
-      title: <FormattedMessage id="primary.my-profile" />,
-      link: "/my-profile",
+      title: <FormattedMessage id="primary.our-bar" />,
+      link: "/our-bar",
     },
     { title: <FormattedMessage id="primary.contacts" />, link: "/contacts" },
   ];
-
-  console.log(location.pathname)
   return (
     <WrapperPageItems>
       {pagesList.map((item, index) => (

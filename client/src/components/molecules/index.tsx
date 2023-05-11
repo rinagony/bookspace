@@ -6,3 +6,4 @@ export { default as Carousel } from "./Carousel";
 export { default as PackageTabs } from "./PackageTabs";
 export { default as FormReservation } from "./FormReservation";
 export { default as Footer } from "./Footer";
+export { default as ErrorComponent } from "./Error";

@@ -5,10 +5,22 @@ import { Layout } from "../molecules";
 import { ButtonComponent, NoData } from "../atoms";
 import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
-import { Alert, Box, Dialog, DialogActions, DialogTitle, Grid, Snackbar } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Dialog,
+  DialogActions,
+  DialogTitle,
+  Grid,
+  Snackbar,
+} from "@mui/material";
 import { IProductSelected } from "../../interfaces";
 import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
-import { getProductsFromBasket, removeProductFromBasket } from "../../redux/products/actions";
+import {
+  getProductsFromBasket,
+  removeProductFromBasket,
+} from "../../redux/products/actions";
+import { useNavigate } from "react-router-dom";
 
 const ImageContainer = styled(Grid)`
   width: 6rem;
@@ -74,6 +86,7 @@ function Basket() {
     show: false,
     item: null,
   });
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getProductsFromBasket());
@@ -89,9 +102,7 @@ function Basket() {
 
   const handleOnRemove = () => {
     if (modal.item) {
-      dispatch(
-        removeProductFromBasket(modal.item)
-      ).then(() => {
+      dispatch(removeProductFromBasket(modal.item)).then(() => {
         dispatch(getProductsFromBasket());
         handleClose();
         setAlert(true);
@@ -115,8 +126,15 @@ function Basket() {
           <FormattedMessage id="product.removed" />
         </Alert>
       </Snackbar>
-      {!productsSelected ? (
-        <NoData />
+      {!productsSelected.length ? (
+        <NoData message="basket.empty">
+          <ButtonComponent
+            typeButton="button"
+            onClick={() => navigate("/products")}
+          >
+            <FormattedMessage id="primary.shopping" />
+          </ButtonComponent>
+        </NoData>
       ) : (
         <BasketContainer>
           {productsSelected.map((item, index) => (

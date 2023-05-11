@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { SearchField, Select } from "../atoms";
+import { RadioGroup, SearchField, Select } from "../atoms";
 import { FormattedMessage } from "react-intl";
+import { SortProductsOptions } from "../../enums";
 
 const SidebarContainer = styled.div`
   margin-top: 2rem;
@@ -14,31 +15,45 @@ const Paragraph = styled.p`
   font-size: 1rem;
 `;
 
-const SearchBlock = styled.div``;
-const FilterBlock = styled.div`
+const Block = styled.div`
   margin-top: 2rem;
 `;
 
 interface SidebarProductsProps {
-  handleSearchData: (dataToFilter: string) => void;
-  handleFilterData: (dataToFilter: string) => void;
+  handleSearchData: (data: string) => void;
+  handleFilterData: (option: string) => void;
+  handleSortData: (option: string) => void;
 }
 
-function SidebarProducts({ handleSearchData, handleFilterData }: SidebarProductsProps) {
+function SidebarProducts({
+  handleSearchData,
+  handleFilterData,
+  handleSortData,
+}: SidebarProductsProps) {
   return (
     <SidebarContainer>
-      <SearchBlock>
+      <div>
         <Paragraph>
           <FormattedMessage id="products.search" />
         </Paragraph>
         <SearchField handleSearchData={handleSearchData} />
-      </SearchBlock>
-      <FilterBlock>
+      </div>
+      <Block>
         <Paragraph>
           <FormattedMessage id="products.filter" />
         </Paragraph>
         <Select handleFilterData={handleFilterData} />
-      </FilterBlock>
+      </Block>
+      <Block>
+        <Paragraph>
+          <FormattedMessage id="products.sort" />
+        </Paragraph>
+        <RadioGroup
+          type="sorter"
+          options={Object.values(SortProductsOptions).filter((v) => isNaN(Number(v)))}
+          onChange={handleSortData}
+        />
+      </Block>
     </SidebarContainer>
   );
 }

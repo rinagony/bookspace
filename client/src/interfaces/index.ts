@@ -27,7 +27,9 @@ export interface IInitialStateProducts {
 }
 
 export interface IInitialStateAbout {
-  aboutInfo: IAbout | null;
+  aboutInfo: IAbout;
+  loading: boolean;
+  error: any;
 }
 
 export interface IPackage {
@@ -52,7 +54,8 @@ export interface IAbout {
   aboutParagraph2: string;
   aboutHeader3:  string;
   aboutParagraph3:  string;
-  images: string[]
+  images: string[],
+  aboutHeader4: string;
 }
 
 export interface IReservationInfo {

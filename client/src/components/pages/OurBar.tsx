@@ -9,7 +9,7 @@ const ContactComponent = styled.div`
   margin-top: 2rem;
 `;
 
-function MyProfile() {
+function OurBar() {
   const userInfo = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   return (
@@ -24,4 +24,4 @@ function MyProfile() {
   );
 }
 
-export default MyProfile;
+export default OurBar;

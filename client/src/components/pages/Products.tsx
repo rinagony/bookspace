@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { type RootState } from "../../redux/store";
-import { Layout, ProductItem, SidebarProducts } from "../molecules";
+import {
+  ErrorComponent,
+  Layout,
+  ProductItem,
+  SidebarProducts,
+} from "../molecules";
 import { NoData, SkeletonCard } from "../atoms";
 import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
@@ -9,13 +14,10 @@ import { Grid } from "@mui/material";
 import { Pagination } from "@mui/material";
 import { IInitialStateProducts, IProduct } from "../../interfaces";
 import usePagination from "./../../hooks/UsePagination";
+import { SortProductsOptions } from "../../enums";
 
 const ProductList = styled(Grid)`
   margin-top: 2rem;
-`;
-
-const ErrorText = styled.p`
-  text-align: center;
 `;
 
 const PaginationContainer = styled.div`
@@ -65,19 +67,33 @@ function Products() {
     }
   };
 
+  const handleSortData = (option: string) => {
+    let items = [...productsFiltered];
+    switch (option) {
+      case SortProductsOptions.low:
+        items.sort((a, b) => a.price - b.price);
+        setProductsFiltered(items);
+        break;
+      case SortProductsOptions.high:
+        items.sort((a, b) => b.price - a.price);
+        setProductsFiltered(items);
+        break;
+      case SortProductsOptions.alphabet:
+          items.sort((a, b) => a.title.localeCompare(b.title));
+          setProductsFiltered(items);
+          break;
+      default:
+        break;
+    }
+  };
+
   const onChangePagination = (e: any, pg: number) => {
     setPage(pg);
     products.jump(pg);
   };
 
   if (productsState.error)
-    return (
-      <Layout>
-        <ErrorText>
-          <FormattedMessage id="error.reload" /> {productsState.error}
-        </ErrorText>
-      </Layout>
-    );
+    return <ErrorComponent errorMessage={productsState.error} />;
 
   return (
     <Layout>
@@ -85,16 +101,15 @@ function Products() {
         <SkeletonCard />
       ) : (
         <Grid container columnSpacing={{ xs: 1, sm: 2 }}>
-          <Grid item xs={12} lg={2}>
+          <Grid item xs={12} lg={3}>
             <SidebarProducts
               handleSearchData={handleSearchProducts}
               handleFilterData={handleFilterData}
+              handleSortData={handleSortData}
             />
-            <div>
-              Ads content
-            </div>
+            <div>Ads content</div>
           </Grid>
-          <Grid item xs={12} lg={10}>
+          <Grid item xs={12} lg={9}>
             <ProductList
               justifyContent={"center"}
               marginTop={2}

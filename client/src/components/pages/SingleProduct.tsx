@@ -113,7 +113,7 @@ function SingleProduct() {
 
   return (
     <Layout>
-      <Alert alert={alert} setAlert={setAlert} message="product.added" />
+      <Alert alert={alert} setAlert={setAlert} message={<FormattedMessage id="product.added" />} />
       {!productSelected ? (
         <NoData />
       ) : (

@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { Carousel, FormReservation, Layout, PackageTabs } from "../molecules";
+import {
+  Carousel,
+  ErrorComponent,
+  FormReservation,
+  Layout,
+  PackageTabs,
+} from "../molecules";
 import { FormattedMessage } from "react-intl";
 import styled from "styled-components";
-import { IPackage, IModalReservation, IAbout } from "../../interfaces";
+import {
+  IPackage,
+  IModalReservation,
+  IAbout,
+  IInitialStateAbout,
+} from "../../interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/store";
 import { getAboutAction } from "../../redux/about/actions";
 import { DialogActions, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Alert, ButtonComponent, Modal } from "../atoms";
+import { Alert, ButtonComponent, Modal, SkeletonAbout } from "../atoms";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 
 const Title = styled.h2`
@@ -50,20 +61,33 @@ const DescriptionBlock = styled(Grid)`
 `;
 
 const SubTitle = styled.h3`
-  font-size: 1rem;
-  margin: 0.7rem 0;
+  font-size: 0.9rem;
+  margin: 1rem 0;
   font-weight: 600;
+  color: ${(props) => props.theme.colors.red};
+  text-decoration: underline;
+  cursor: pointer;
 `;
 
 const Description = styled.p`
-  margin: 0;
+  margin: 0.4rem 0;
 `;
+
+const LinkComponent = styled(Link)`
+  font-size: 0.9rem;
+  margin: 1 0;
+  font-weight: 600;
+  color: ${(props) => props.theme.colors.red};
+  text-decoration: underline;
+  cursor: pointer;
+`
 
 function About() {
   const dispatch = useDispatch<ThunkDispatch<RootState, void, AnyAction>>();
-  const aboutInfo: IAbout | null = useSelector(
-    (state: RootState) => state.about.aboutInfo
+  const aboutInfo: IInitialStateAbout = useSelector(
+    (state: RootState) => state.about
   );
+  const tabsRef = React.useRef<HTMLDivElement>(null);
   const [alert, setAlert] = useState(false);
   const [modal, setModal] = useState<IModalReservation>({
     show: false,
@@ -88,6 +112,8 @@ function About() {
     });
   };
 
+  if (aboutInfo.error) return <ErrorComponent errorMessage={aboutInfo.error} />;
+
   return (
     <Layout>
       <Alert
@@ -95,44 +121,41 @@ function About() {
         setAlert={setAlert}
         message={<FormattedMessage id="product.added" />}
       />
-      <Grid container columnSpacing={{ xs: 1, sm: 2 }}>
-        <Grid item xs={12} lg={2}>
-          Adds content
-        </Grid>
-        {aboutInfo ? (
+      {aboutInfo.loading ? (
+        <SkeletonAbout />
+      ) : (
+        <Grid container columnSpacing={{ xs: 1, sm: 2 }}>
+          <Grid item xs={12} lg={2}>
+            Adds content
+          </Grid>
           <AboutComponent item xs={12} lg={10}>
-            <Title>{aboutInfo.aboutHeader1}</Title>
+            <Title>{aboutInfo.aboutInfo.aboutHeader1}</Title>
             <WrapperCarousel container>
               <CarouselItem item sm={12} md={7}>
-                <Carousel images={aboutInfo.images} />
+                <Carousel images={aboutInfo.aboutInfo.images} />
               </CarouselItem>
               <DescriptionBlock item sm={12} md={5}>
-                <Description>{aboutInfo.aboutParagraph1}</Description>
-                <SubTitle>{aboutInfo.aboutHeader2}</SubTitle>
+                <Description>{aboutInfo.aboutInfo.aboutParagraph1}</Description>
+                <LinkComponent to="/conferences">{aboutInfo.aboutInfo.aboutHeader2} </LinkComponent>
                 <Description>
-                  {aboutInfo.aboutParagraph2}
-                  <Link to="/about#events">
-                    <ArrowOutwardIcon fontSize="small" />
-                  </Link>
+                  {aboutInfo.aboutInfo.aboutParagraph2}
                 </Description>
-                <SubTitle>{aboutInfo.aboutHeader3}</SubTitle>
+                <LinkComponent to="/our-bar">{aboutInfo.aboutInfo.aboutHeader3}</LinkComponent>
                 <Description>
-                  {aboutInfo.aboutParagraph3}
-                  <Link to="/about#events">
-                    <ArrowOutwardIcon fontSize="small" />
-                  </Link>
+                  {aboutInfo.aboutInfo.aboutParagraph3}
                 </Description>
+                <SubTitle onClick={() => tabsRef.current?.scrollIntoView()}>
+                    {aboutInfo.aboutInfo.aboutHeader4}
+                </SubTitle>
               </DescriptionBlock>
             </WrapperCarousel>
-            <TitleSmall>
+            <TitleSmall ref={tabsRef}>
               <FormattedMessage id="about.check-packages" />
             </TitleSmall>
             <PackageTabs handleAdd={handleAdd} />
           </AboutComponent>
-        ) : (
-          <FormattedMessage id="primary.no-data" />
-        )}
-      </Grid>
+        </Grid>
+      )}
       <Modal modal={modal.show} title="form.reservation-title">
         <FormReservation item={modal.item}>
           <DialogActions>

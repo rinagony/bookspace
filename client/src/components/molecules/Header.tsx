@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
 import { Container, Grid } from "@mui/material";
 import { Logo, Navigation } from "../atoms";
@@ -30,7 +30,7 @@ const FavoritesIcon = styled(FavoriteBorderOutlinedIcon)`
   ${iconStyles}
 `;
 
-const BusketIcon = styled(ShoppingBasketOutlinedIcon)`
+const BasketIcon = styled(ShoppingBasketOutlinedIcon)`
   ${iconStyles}
 `;
 
@@ -74,29 +74,12 @@ const HeaderButtonContainer = styled(Grid)`
   }
 `;
 
-function Header() {
+function HeaderComponent() {
   const navigate = useNavigate();
-  const productsSelected: IProductSelected[] = useSelector(
-    (state: RootState) => state.products.productsSelected
+  const productsSelectedAmount: number = useSelector(
+    (state: RootState) => state.products.productsSelected.reduce((acc, item) => item.amount + acc, 0)
   );
-  const [productsSelectedAmount, setProductsSelectedAmount] =
-    useState<number>(0);
 
-  useEffect(() => {
-    let amount: number = 0;
-    productsSelected.map((item) => (amount += item.amount));
-    setProductsSelectedAmount(amount);
-  }, [productsSelected]);
-
-  const pagesList = [
-    { title: <FormattedMessage id="primary.products" />, link: "/products" },
-    { title: <FormattedMessage id="primary.about" />, link: "/about" },
-    {
-      title: <FormattedMessage id="primary.my-profile" />,
-      link: "/my-profile",
-    },
-    { title: <FormattedMessage id="primary.contacts" />, link: "/contacts" },
-  ];
   return (
     <HeaderTopComponent>
       <Container maxWidth="lg">
@@ -116,7 +99,7 @@ function Header() {
               <FavoritesIcon />
             </IconButton>
             <IconButtonBasket onClick={() => navigate("/basket")}>
-              <BusketIcon />
+              <BasketIcon />
               <ProductsAmount>{productsSelectedAmount}</ProductsAmount>
             </IconButtonBasket>
           </HeaderButtonContainer>
@@ -125,5 +108,7 @@ function Header() {
     </HeaderTopComponent>
   );
 }
+
+const Header = React.memo(HeaderComponent)
 
 export default Header;
