@@ -1,4 +1,4 @@
-# the-best-store
+# bookspace
 This application represents my experience with: 
 1) React 
 2) TypeScript
