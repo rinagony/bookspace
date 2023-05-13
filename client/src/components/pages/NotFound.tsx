@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout } from "../molecules";
+import { Layout } from "../organisms";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { SentimentDissatisfied } from "@mui/icons-material";

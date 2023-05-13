@@ -11,5 +11,48 @@
     "https://lh4.googleusercontent.com/-QFgcpClL3Ni3QGO-f7Nv6Ll7e4oaP_sGEzn0QEVkPNN2aZ8E-Awdd-AIrrpI48rpz0slMXCquiF_kDbBDUkaTeiXDjoRm32IjXxZsd8X1P7CHJ3Loixm-j1CTyHXeJsLJivj9VQ",
     "https://www.businessmarches.com/wp-content/uploads/2021/10/Bar-CopperBay.jpg"
   ],
-  "aboutHeader4": "Coworking spaces"
+  "aboutHeader4": "Coworking spaces",
+  "packages": [
+    {
+      "title": "VISITOR pack",
+      "secondaryTitle": "One day subscription",
+      "description": [
+        "1 hour tour guide with Dr of Philosophical Science - you will learn about history of our ancient library",
+        "Free drinks (coffee, beer)",
+        "Flexible desk"
+      ],
+      "price": 80,
+      "image": "",
+      "date": "",
+      "icon": "ElectricBoltIcon"
+    },
+    {
+      "title": "FUN pack",
+      "secondaryTitle": "One month subscription with limited hours",
+      "description": [
+        "1 hour tour guide with Dr of Philosophical Science - you will learn about history of our ancient library",
+        "Free drinks (coffee, beer)",
+        "Flexible desk",
+        "Library and Coworking availible from 9am to 5pm"
+      ],
+      "price": 400,
+      "date": "",
+      "image": "",
+      "icon": "StarBorderPurple500Icon" 
+    },
+    {
+      "title": "VIP pack",
+      "secondaryTitle": "One month subscribtion (ALL INCLUISIVE)",
+      "description": [
+        "1 hour tour guide with Dr of Philosophical Science - you will learn about history of our ancient library",
+        "Free drinks (coffee, beer)",
+        "Fixed desk",
+        "Library and Coworking availible anytime"
+      ],
+      "price": 800,
+      "date": "",
+      "image": "",
+      "icon": "LocalFireDepartmentIcon"
+    }
+  ]
 }

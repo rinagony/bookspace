@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Header from "./Header";
+import { Header } from ".";
 
 describe("Header Component", () => {
   it("should render without errors", () => {

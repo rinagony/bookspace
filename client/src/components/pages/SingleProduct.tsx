@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { type RootState } from "../../redux/store";
-import { Layout } from "../molecules";
+import { Layout } from "../organisms";
 import { useParams } from "react-router-dom";
 import { Alert, ButtonComponent, NoData } from "../atoms";
 import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
-import { Grid, Snackbar } from "@mui/material";
+import { Grid } from "@mui/material";
 import { IProduct } from "../../interfaces";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import {

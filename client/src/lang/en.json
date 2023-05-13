@@ -46,5 +46,8 @@
   "primary.privacy": "Copyright 2023 legalvision use of legalvision.co.es is subject to our terms of use and privacy policy. Legalisation law Spain ltd is authorised and regulated by the solicitors regulation authority.",
   "primary.shopping": "Go shopping",
   "basket.empty": "Your basket is empty",
-  "products.sort": "Sort products:"
+  "products.sort": "Sort products:",
+  "primary.phone": "Phone",
+  "primary.email": "Email",
+  "bar.menu": "Old Bar Del Bookspace Menu"
 }

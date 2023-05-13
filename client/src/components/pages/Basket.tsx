@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { type RootState } from "../../redux/store";
-import { Layout } from "../molecules";
+import { Layout } from "../organisms";
 import { ButtonComponent, NoData } from "../atoms";
 import styled from "styled-components";
 import { FormattedMessage } from "react-intl";

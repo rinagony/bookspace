@@ -1,8 +1,7 @@
 import React from "react";
-import Header from "./Header";
 import { Container } from "@mui/material";
 import styled from "styled-components";
-import Footer from "./Footer";
+import { Footer, Header } from "../molecules";
 
 interface LayoutPropsInterface {
   children: React.ReactNode;

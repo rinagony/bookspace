@@ -4,6 +4,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 let products = require("./data/products.json");
 let about = require("./data/about.json");
+let bar = require("./data/bar.json");
 const productsSelectedFile = path.resolve(
   __dirname,
   "./data/productsSelected.json"
@@ -27,6 +28,10 @@ app.get("/api/products", (req, res) => {
 
 app.get("/api/about", (req, res) => {
   res.json(about);
+});
+
+app.get("/api/bar", (req, res) => {
+  res.json(bar);
 });
 
 app.get("/api/productsSelected", (req, res) => {

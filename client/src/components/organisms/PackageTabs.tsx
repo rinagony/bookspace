@@ -120,50 +120,11 @@ const TabsReservation = styled(Grid)`
 
 interface TabsProps {
   handleAdd: (pack: IPackage) => void;
+  packages: IPackage[];
 }
 
-function PackageTabs({ handleAdd }: TabsProps) {
+function PackageTabs({ handleAdd, packages }: TabsProps) {
   const [activeTab, setActiveTab] = useState(0);
-  const packages: IPackage[] = [
-    {
-      title: "VISITOR pack",
-      secondaryTitle: "One day subscription",
-      description: [
-        "1 hour tour guide with Dr of Philosophical Science - you will learn about history of our ancient library",
-        "Free drinks (coffee, beer)",
-        "Flexible desk",
-      ],
-      price: 80,
-      image: "",
-      icon: <ElectricBoltIcon />,
-    },
-    {
-      title: "FUN pack",
-      secondaryTitle: "One month subscription with limited hours",
-      description: [
-        "1 hour tour guide with Dr of Philosophical Science - you will learn about history of our ancient library",
-        "Free drinks (coffee, beer)",
-        "Flexible desk",
-        "Library and Coworking availible from 9am to 5pm",
-      ],
-      price: 400,
-      image: "",
-      icon: <StarBorderPurple500Icon />,
-    },
-    {
-      title: "VIP pack",
-      secondaryTitle: "One month subscribtion (ALL INCLUISIVE)",
-      description: [
-        "1 hour tour guide with Dr of Philosophical Science - you will learn about history of our ancient library",
-        "Free drinks (coffee, beer)",
-        "Fixed desk",
-        "Library and Coworking availible anytime",
-      ],
-      price: 800,
-      image: "",
-      icon: <LocalFireDepartmentIcon />,
-    },
-  ];
   const [calendarValue, setCalendarValue] = useState<Dayjs | null>(
     dayjs(new Date().toISOString().slice(0, 10))
   );
@@ -172,10 +133,18 @@ function PackageTabs({ handleAdd }: TabsProps) {
   };
   const onReserve = (pack: IPackage) => {
     if(calendarValue) {
-      pack.date = calendarValue.format('DD/MM/YYYY')
-      handleAdd(pack);
+      console.log(calendarValue, pack)
+      const nrwq = {...pack}
+      nrwq.date = calendarValue.format('DD/MM/YYYY')
+      handleAdd(nrwq);
     }
   };
+
+  const icons = [
+    <LocalFireDepartmentIcon />,
+    <ElectricBoltIcon />,
+    <StarBorderPurple500Icon />
+  ]
 
   return (
     <>
@@ -189,7 +158,7 @@ function PackageTabs({ handleAdd }: TabsProps) {
             className={index === activeTab ? "active-tab" : ""}
           >
             {item.title}
-            {item.icon}
+            {icons[index]}
           </TabsHeaderItem>
         ))}
       </TabsHeader>
@@ -220,7 +189,7 @@ function PackageTabs({ handleAdd }: TabsProps) {
                   },
                 }
               ]}
-              onChange={(value: any) => setCalendarValue(value)}
+              onChange={(value: Dayjs | null) => setCalendarValue(value)}
             />
           </LocalizationProvider>
 

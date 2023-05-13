@@ -20,8 +20,8 @@ export interface IUser {
 }
 
 export interface IInitialStateProducts {
-  products: IProduct[],
-  productsSelected: IProductSelected[],
+  products: IProduct[];
+  productsSelected: IProductSelected[];
   loading: boolean;
   error: any;
 }
@@ -38,30 +38,46 @@ export interface IPackage {
   description: string[];
   price: number;
   image: string;
-  icon: React.ReactNode;
   date?: string;
 }
 
-export interface IModalReservation{
+export interface IModalReservation {
   show: boolean;
   item: IPackage | null;
 }
 
 export interface IAbout {
   aboutHeader1: string;
-  aboutParagraph1:  string;
-  aboutHeader2:  string;
+  aboutParagraph1: string;
+  aboutHeader2: string;
   aboutParagraph2: string;
-  aboutHeader3:  string;
-  aboutParagraph3:  string;
-  images: string[],
+  aboutHeader3: string;
+  aboutParagraph3: string;
+  images: string[];
   aboutHeader4: string;
+  packages: IPackage[];
 }
 
 export interface IReservationInfo {
-  packageTitle: string,
-  email: string,
-  lastName: string,
-  name: string,
-  phone: string,
+  packageTitle: string;
+  email: string;
+  lastName: string;
+  name: string;
+  phone: string;
+  date: string | undefined;
+}
+
+export interface IInitialStateBar {
+  barInfo: {
+    images: string[];
+    title: string;
+    description: string;
+    subtitle: string;
+    descrition2: string[];
+    subtitle2: string;
+    phone: string;
+    email: string;
+  };
+  loading: boolean;
+  error: string | undefined;
 }

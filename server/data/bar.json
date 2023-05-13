@@ -1,0 +1,15 @@
+{
+  "images": [
+    "https://images.pexels.com/photos/751046/pexels-photo-751046.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "https://images.pexels.com/photos/696218/pexels-photo-696218.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "https://images.pexels.com/photos/1695052/pexels-photo-1695052.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  ],
+  "title": "Old Bar Bookspace",
+  "description": "Old Bar del Bookspace is an intimate and relaxed space, completely open to the city, in which you can enjoy everything from breakfast to an appetizer, lunch, a glass of wine, a cocktail, or a special dinner. It boasts an extensive list of wines, cavas, and champagnes and our expert bartenders prepare classic cocktails along with more innovative cocktails for a fun evening among friends.",
+  "subtitle": "Open hours",
+  "descrition2": ["Open every day", "From 8:30 a.m. to 1 a.m."],
+  "subtitle2": "Contacts",
+  "phone": "+34555626345",
+  "email": "oldbar@bookspace.com"
+}

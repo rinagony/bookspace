@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Container, Grid } from "@mui/material";
-import { Logo, Navigation } from "../atoms";
+import { Logo } from "../atoms";
 import { FormattedMessage } from "react-intl";
 
 const FooterComponent = styled.div`

@@ -52,6 +52,7 @@ function FormReservation({ item, children }: FormReservationProps) {
         email: data.email,
         lastName: data.lastName,
         name: data.name,
+        date: item.date,
         phone: data.phone,
       };
       dispatch(addReservation(reservationInfo))
@@ -61,10 +62,7 @@ function FormReservation({ item, children }: FormReservationProps) {
         }
         )
         .catch(() => setSnackbarStatus({ show: true, error: false }));
-      console.log(reservationInfo, "reservationInfo");
     }
-
-    console.log("onSubmitFomr", data);
   };
   return (
     <Container>

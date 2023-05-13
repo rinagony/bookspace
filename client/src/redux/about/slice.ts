@@ -11,7 +11,8 @@ const InitialState: IInitialStateAbout = {
     aboutHeader3: '',
     aboutParagraph3: '',
     images: [],
-    aboutHeader4: ''
+    aboutHeader4: '',
+    packages: [],
   },
   loading: true,
   error: null,

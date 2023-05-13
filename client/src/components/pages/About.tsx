@@ -3,15 +3,13 @@ import {
   Carousel,
   ErrorComponent,
   FormReservation,
-  Layout,
-  PackageTabs,
+  Modal
 } from "../molecules";
 import { FormattedMessage } from "react-intl";
 import styled from "styled-components";
 import {
   IPackage,
   IModalReservation,
-  IAbout,
   IInitialStateAbout,
 } from "../../interfaces";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,8 +18,8 @@ import { RootState } from "../../redux/store";
 import { getAboutAction } from "../../redux/about/actions";
 import { DialogActions, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Alert, ButtonComponent, Modal, SkeletonAbout } from "../atoms";
-import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import { Alert, ButtonComponent, SkeletonAbout } from "../atoms";
+import { Layout, PackageTabs } from "../organisms";
 
 const Title = styled.h2`
   font-size: 1.3rem;
@@ -101,6 +99,7 @@ function About() {
 
   const handleAdd = (pack: IPackage) => {
     if (pack.date) {
+      console.log(pack,'PACK')
       setModal({ show: true, item: pack });
     }
   };
@@ -152,7 +151,7 @@ function About() {
             <TitleSmall ref={tabsRef}>
               <FormattedMessage id="about.check-packages" />
             </TitleSmall>
-            <PackageTabs handleAdd={handleAdd} />
+            <PackageTabs handleAdd={handleAdd} packages={aboutInfo.aboutInfo.packages}/>
           </AboutComponent>
         </Grid>
       )}

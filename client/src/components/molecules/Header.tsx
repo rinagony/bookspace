@@ -6,7 +6,6 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import { useNavigate } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
-import { IProductSelected } from "../../interfaces";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import LoginIcon from '@mui/icons-material/Login';
@@ -109,6 +108,4 @@ function HeaderComponent() {
   );
 }
 
-const Header = React.memo(HeaderComponent)
-
-export default Header;
+export default HeaderComponent;

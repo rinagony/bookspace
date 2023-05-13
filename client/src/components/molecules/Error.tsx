@@ -1,11 +1,10 @@
-import { Alert, Snackbar } from "@mui/material";
-import React, { Dispatch, SetStateAction } from "react";
-import Layout from "./Layout";
+import React from "react";
+import Layout from "../organisms/Layout";
 import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
 
 interface AlertComponentProps {
-  errorMessage?:  string;
+  errorMessage?: string;
 }
 
 const ErrorText = styled.p`
@@ -15,10 +14,11 @@ const ErrorText = styled.p`
 function AlertComponent({ errorMessage }: AlertComponentProps) {
   return (
     <Layout>
-    <ErrorText>
-      <FormattedMessage id="error.reload" />{errorMessage ? ": " + errorMessage : '.'}
-    </ErrorText>
-  </Layout>
+      <ErrorText>
+        <FormattedMessage id="error.reload" />
+        {errorMessage ? ": " + errorMessage : "."}
+      </ErrorText>
+    </Layout>
   );
 }
 

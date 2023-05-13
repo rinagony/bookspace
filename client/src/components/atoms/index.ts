@@ -6,6 +6,5 @@ export { default as SkeletonAbout } from "./skeletons/SkeletonAbout";
 export { default as NoData } from "./NoData";
 export { default as Select } from "./Select";
 export { default as Alert } from "./Alert";
-export { default as Modal } from "./Modal";
 export { default as Navigation } from "./Navigation";
 export { default as RadioGroup } from "./RadioGroup";

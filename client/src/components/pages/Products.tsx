@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { type RootState } from "../../redux/store";
 import {
   ErrorComponent,
-  Layout,
   ProductItem,
   SidebarProducts,
 } from "../molecules";
@@ -13,8 +12,9 @@ import { FormattedMessage } from "react-intl";
 import { Grid } from "@mui/material";
 import { Pagination } from "@mui/material";
 import { IInitialStateProducts, IProduct } from "../../interfaces";
-import usePagination from "./../../hooks/UsePagination";
+import usePagination from "../../hooks/UsePagination";
 import { SortProductsOptions } from "../../enums";
+import { Layout } from "../organisms";
 
 const ProductList = styled(Grid)`
   margin-top: 2rem;
