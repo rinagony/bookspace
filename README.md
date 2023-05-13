@@ -11,5 +11,5 @@ This application represents my experience with:
 9) Atomic design pattern
 
 Steps to run application: 
-2) run `yarn`, then `yarn start` in Client folder
-3) run `npm install`, then `npm start` in Server folder
+1) run `yarn`, then `yarn start` in Client folder
+2) run `npm install`, then `npm start` in Server folder
