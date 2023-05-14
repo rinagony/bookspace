@@ -67,6 +67,12 @@ export interface IReservationInfo {
   date: string | undefined;
 }
 
+export interface IBarMenu {
+  title: string;
+  composition: string;
+  price: number;
+}
+
 export interface IInitialStateBar {
   barInfo: {
     images: string[];
@@ -77,7 +83,16 @@ export interface IInitialStateBar {
     subtitle2: string;
     phone: string;
     email: string;
+    menu: IBarMenu[]
   };
   loading: boolean;
   error: string | undefined;
+}
+
+export interface IBarResrvationUserInfo {
+  email: string;
+  lastName: string;
+  name: string;
+  date: string;
+  phone: string;
 }

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   Carousel,
   ErrorComponent,
-  FormReservation,
   Modal
 } from "../molecules";
 import { FormattedMessage } from "react-intl";
@@ -19,7 +18,8 @@ import { getAboutAction } from "../../redux/about/actions";
 import { DialogActions, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Alert, ButtonComponent, SkeletonAbout } from "../atoms";
-import { Layout, PackageTabs } from "../organisms";
+import { FormPackages, Layout, PackageTabs } from "../organisms";
+import TurnRightIcon from '@mui/icons-material/TurnRight';
 
 const Title = styled.h2`
   font-size: 1.3rem;
@@ -73,7 +73,7 @@ const Description = styled.p`
 
 const LinkComponent = styled(Link)`
   font-size: 0.9rem;
-  margin: 1 0;
+  margin: 1.5rem 0 1rem 0;
   font-weight: 600;
   color: ${(props) => props.theme.colors.red};
   text-decoration: underline;
@@ -99,7 +99,6 @@ function About() {
 
   const handleAdd = (pack: IPackage) => {
     if (pack.date) {
-      console.log(pack,'PACK')
       setModal({ show: true, item: pack });
     }
   };
@@ -144,7 +143,7 @@ function About() {
                   {aboutInfo.aboutInfo.aboutParagraph3}
                 </Description>
                 <SubTitle onClick={() => tabsRef.current?.scrollIntoView()}>
-                    {aboutInfo.aboutInfo.aboutHeader4}
+                    {aboutInfo.aboutInfo.aboutHeader4}<TurnRightIcon fontSize="small"/>
                 </SubTitle>
               </DescriptionBlock>
             </WrapperCarousel>
@@ -156,10 +155,10 @@ function About() {
         </Grid>
       )}
       <Modal modal={modal.show} title="form.reservation-title">
-        <FormReservation item={modal.item}>
+        <FormPackages item={modal.item}>
           <DialogActions>
             <ButtonComponent typeButton="submit">
-              <FormattedMessage id="products.reservation" />
+              <FormattedMessage id="primary.reservation" />
             </ButtonComponent>
             <ButtonComponent
               typeButton="button"
@@ -169,7 +168,7 @@ function About() {
               <FormattedMessage id="primary.cancel" />
             </ButtonComponent>
           </DialogActions>
-        </FormReservation>
+        </FormPackages>
       </Modal>
     </Layout>
   );

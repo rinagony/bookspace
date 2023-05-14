@@ -7,13 +7,10 @@ import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import StarBorderPurple500Icon from "@mui/icons-material/StarBorderPurple500";
 import book from "./../../assets/images/books.jpg";
-import { ButtonComponent } from "../atoms";
+import { ButtonComponent, Calendar } from "../atoms";
 import { FormattedMessage } from "react-intl";
 import { IPackage } from "../../interfaces";
 import dayjs, { Dayjs } from "dayjs";
-import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const TabsHeader = styled(Grid)`
   width: 100%;
@@ -133,10 +130,9 @@ function PackageTabs({ handleAdd, packages }: TabsProps) {
   };
   const onReserve = (pack: IPackage) => {
     if(calendarValue) {
-      console.log(calendarValue, pack)
-      const nrwq = {...pack}
-      nrwq.date = calendarValue.format('DD/MM/YYYY')
-      handleAdd(nrwq);
+      const newPack = {...pack}
+      newPack.date = calendarValue.format('DD/MM/YYYY')
+      handleAdd(newPack);
     }
   };
 
@@ -177,21 +173,9 @@ function PackageTabs({ handleAdd, packages }: TabsProps) {
         </TabsBody>
         <TabsReservation flexDirection={"column"} item sm={7} md={5}>
           <Title>
-            <FormattedMessage id="products.reservation" />
+            <FormattedMessage id="primary.reservation" />
           </Title>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DateCalendar
-              value={calendarValue}
-              sx={[
-                {
-                  '.Mui-selected': {
-                    backgroundColor: `#b2dfdb !important`,
-                  },
-                }
-              ]}
-              onChange={(value: Dayjs | null) => setCalendarValue(value)}
-            />
-          </LocalizationProvider>
+          <Calendar value={calendarValue} setValue={setCalendarValue} />
 
           <ButtonComponent
             styles={{ height: "2rem" }}

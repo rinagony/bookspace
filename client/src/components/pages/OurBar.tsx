@@ -1,23 +1,17 @@
-import React, { useEffect, useState } from "react";
-import {
-  Carousel,
-  ErrorComponent
-} from "../molecules";
-import { Layout } from "../organisms";
+import React, { useEffect, useMemo, useState } from "react";
+import { Carousel, ErrorComponent, Table } from "../molecules";
+import { FormBar, Layout } from "../organisms";
 import { FormattedMessage } from "react-intl";
 import styled from "styled-components";
-import {
-  IPackage,
-  IModalReservation,
-  IInitialStateBar,
-} from "../../interfaces";
+import { IInitialStateBar } from "../../interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/store";
 import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Alert, SkeletonAbout } from "../atoms";
+import { Alert, NoData, SkeletonAbout } from "../atoms";
 import { getBarAction } from "../../redux/bar/actions";
+import TurnRightIcon from "@mui/icons-material/TurnRight";
 
 const Title = styled.h2`
   font-size: 1.3rem;
@@ -61,18 +55,27 @@ const DescriptionBlock = styled(Grid)`
   }
 `;
 
-const ContactBlock = styled.div`
-`;
-
 const Description = styled.p`
-  margin: 0.4rem 0;
+  margin: 0;
 `;
 
 const Subtitle = styled.p`
   font-size: 0.9rem;
-  margin: 1 0;
+  margin: 0.7rem 0;
   font-weight: 600;
   color: ${(props) => props.theme.colors.red};
+`;
+
+const SubtitleLink = styled(Subtitle)`
+  text-decoration: underline;
+  cursor: pointer;
+`;
+const WrapperTable = styled.div`
+  margin-top: 3rem;
+`;
+
+const Reservation = styled.div`
+  margin-top: 2rem;
 `;
 
 function OurBar() {
@@ -80,30 +83,36 @@ function OurBar() {
   const barInfo: IInitialStateBar = useSelector(
     (state: RootState) => state.bar
   );
-  const tabsRef = React.useRef<HTMLDivElement>(null);
   const [alert, setAlert] = useState(false);
-  const [modal, setModal] = useState<IModalReservation>({
-    show: false,
-    item: null,
-  });
+  const reservationRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     dispatch(getBarAction());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleAdd = (pack: IPackage) => {
-    if (pack.date) {
-      setModal({ show: true, item: pack });
-    }
-  };
-
-  const handleClose = () => {
-    setModal({
-      show: false,
-      item: null,
-    });
-  };
+  const columns = useMemo(
+    () => [
+      {
+        Header: "Old Bar Del Bookspace Menu",
+        columns: [
+          {
+            Header: "Drink",
+            accessor: "title",
+          },
+          {
+            Header: "Composition/Type",
+            accessor: "composition",
+          },
+          {
+            Header: "Price",
+            accessor: "price",
+          },
+        ],
+      },
+    ],
+    []
+  );
 
   if (barInfo.error) return <ErrorComponent errorMessage={barInfo.error} />;
 
@@ -136,23 +145,41 @@ function OurBar() {
                   ))}
                 </ul>
                 <Subtitle>{barInfo.barInfo.subtitle2}</Subtitle>
-                <ContactBlock>
+                <div>
                   <FormattedMessage id="primary.phone" />:
                   <Link to={`tel:${barInfo.barInfo.phone}`}>
                     {barInfo.barInfo.phone}
                   </Link>
-                </ContactBlock>
-                <ContactBlock>
+                </div>
+                <div>
                   <FormattedMessage id="primary.email" />:
                   <Link to={`mailto:${barInfo.barInfo.email}`}>
                     {barInfo.barInfo.email}
                   </Link>
-                </ContactBlock>
+                </div>
+                <div>
+                  <SubtitleLink
+                    onClick={() => reservationRef.current?.scrollIntoView()}
+                  >
+                    <FormattedMessage id="primary.reservation" />
+                    <TurnRightIcon fontSize="small" />
+                  </SubtitleLink>
+                </div>
               </DescriptionBlock>
             </WrapperCarousel>
-            <TitleSmall ref={tabsRef}>
-              <FormattedMessage id="bar.menu" />
-            </TitleSmall>
+            <WrapperTable>
+              {barInfo.barInfo.menu ? (
+                <Table data={barInfo.barInfo.menu} columns={columns} />
+              ) : (
+                <NoData />
+              )}
+            </WrapperTable>
+            <Reservation ref={reservationRef}>
+              <Title>
+                <FormattedMessage id="primary.reservation" />
+              </Title>
+              <FormBar />
+            </Reservation>
           </AboutComponent>
         </Grid>
       )}

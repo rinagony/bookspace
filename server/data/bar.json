@@ -11,5 +11,51 @@
   "descrition2": ["Open every day", "From 8:30 a.m. to 1 a.m."],
   "subtitle2": "Contacts",
   "phone": "+34555626345",
-  "email": "oldbar@bookspace.com"
+  "email": "oldbar@bookspace.com",
+  "menu": [
+    { "title": "Estrella Damm", "composition": "Beer", "price": 19 },
+    { "title": "Free Damm 0,0% /", "composition": "Beer", "price": 10 },
+    { "title": "Perrier", "composition": "Water", "price": 3 },
+    { "title": "Vichy Catalan", "composition": "Water", "price": 4 },
+    { "title": "Schweppes Premium", "composition": "Limonade", "price": 10 },
+    { "title": "Juvé y Camps Milesimé Brut", "composition": "Cava", "price": 21 },
+    { "title": "Pere Ventura Vintage", "composition": "Cava", "price": 23 },
+    { "title": "Ruinart Rosé", "composition": "Champagne", "price": 30 },
+    {
+      "title": "Fenomenal, Verdejo, Rueda",
+      "composition": "White Wine",
+      "price": 35
+    },
+    {
+      "title": "Cloudy Bay, Sauvignon Blanc, New Zeland ",
+      "composition": "White Wine",
+      "price": 50
+    },
+    {
+      "title": "San Vicente, Tempranillo Peludo, Rioja",
+      "composition": "Red Wine",
+      "price": 32
+    },
+    {
+      "title": "Gin Mare (Spain)",
+      "composition": "Gin, mint, ice, beer",
+      "price": 36
+    },
+    {
+      "title": "Beefeater (England)",
+      "composition": "England gin, mint, ice",
+      "price": 36
+    },
+    { "title": "Havana Club 3 años", "composition": "Cuban Rum", "price": 96 },
+    {
+      "title": "The Glenrothes Select Reserve (single malt)",
+      "composition": "Scotch (whiskey)",
+      "price": 196
+    },
+    {
+      "title": "Any type of coffee",
+      "composition": "Coffee",
+      "price": 10
+    }
+  ]
 }

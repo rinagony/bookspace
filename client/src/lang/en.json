@@ -17,7 +17,7 @@
   "product.added": "Product added to the basket",
   "product.removed": "Your book have been removed from the basket",
   "products.add": "Add to basket",
-  "products.reservation": "Make a reservation",
+  "primary.reservation": "Make a reservation",
   "products.favorites": "Favorite",
   "primary.learn": "Learn more..",
   "primary.remove": "Remove",
@@ -49,5 +49,5 @@
   "products.sort": "Sort products:",
   "primary.phone": "Phone",
   "primary.email": "Email",
-  "bar.menu": "Old Bar Del Bookspace Menu"
+  "bar.sent": "Your reservation was confirmed. Check out email {val} for more details."
 }

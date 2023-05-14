@@ -12,6 +12,7 @@ const InitialState: IInitialStateBar = {
     subtitle2: "",
     phone: "",
     email: "",
+    menu: []
   },
   loading: true,
   error: undefined,

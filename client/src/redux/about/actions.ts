@@ -19,12 +19,12 @@ export const getAboutAction = createAsyncThunk(
   }
 );
 
-export const addReservation = createAsyncThunk(
-  "about/addReservation",
+export const addPackReservation = createAsyncThunk(
+  "about/addPackReservation",
   async (infoReservation: IReservationInfo) => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_SERVER}/api/addReservation`,
+        `${process.env.REACT_APP_SERVER}/api/addPackReservation`,
         {
           method: "POST",
           headers: {

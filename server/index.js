@@ -13,6 +13,10 @@ const reservationListFile = path.resolve(
   __dirname,
   "./data/reservationList.json"
 );
+const barReservationListFile = path.resolve(
+  __dirname,
+  "./data/barReservationList.json"
+);
 const cors = require("cors");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
@@ -82,8 +86,29 @@ app.post("/api/productsSelected", (req, res) => {
   });
 });
 
-app.post("/api/addReservation", (req, res) => {
-  const newReservation = req.body;
+app.post("/api/addPackReservation", (req, res) => {
+  const newBarReservation = req.body;
+  fs.readFile(barReservationListFile, "utf8", (err, data) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Failed to read file" });
+    }
+
+    const allBarReservations = JSON.parse(data);
+    allBarReservations.push(newBarReservation);
+
+    fs.writeFile(barReservationListFile, JSON.stringify(allBarReservations), (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Failed to write file" });
+      }
+      res.status(201).json({status: 201})
+    });
+  });
+});
+
+app.post("/api/addBarReservation", (req, res) => {
+  const newBarReservation = req.body;
   fs.readFile(reservationListFile, "utf8", (err, data) => {
     if (err) {
       console.error(err);
@@ -91,7 +116,7 @@ app.post("/api/addReservation", (req, res) => {
     }
 
     const allReservations = JSON.parse(data);
-    allReservations.push(newReservation);
+    allReservations.push(newBarReservation);
 
     fs.writeFile(reservationListFile, JSON.stringify(allReservations), (err) => {
       if (err) {
