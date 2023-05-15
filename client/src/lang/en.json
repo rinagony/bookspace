@@ -40,6 +40,9 @@
   "form.email-validation-pattern": "Email is not valid",
   "form.phone": "Phone number:",
   "form.phone-validation-req": "Phone number is required",
+  "form.people-validation-req": "People number is required",
+  "form.people-validation-min": "Min number of people is 1",
+  "form.people-validation-max": "Max number of people is 12",
   "form.phone-validation-pattern": "Phone number is not valid",
   "about.reserve": "Reserve",
   "form.sent": "Successfully sent! Our administrator will contact you soon by your email {val}",
@@ -49,5 +52,6 @@
   "products.sort": "Sort products:",
   "primary.phone": "Phone",
   "primary.email": "Email",
-  "bar.sent": "Your reservation was confirmed. Check out email {val} for more details."
+  "bar.sent": "Your reservation was confirmed. Check out email {val} for more details.",
+  "form.people": "Number of people"
 }

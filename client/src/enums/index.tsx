@@ -8,3 +8,8 @@ export enum PackageIcons {
   "StarBorderPurple500Icon",
   "LocalFireDepartmentIcon",
 }
+
+export enum FormTypes {
+  bar,
+  packages
+}

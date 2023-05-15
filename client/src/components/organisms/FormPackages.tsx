@@ -8,6 +8,7 @@ import { addPackReservation } from "../../redux/about/actions";
 import { RootState } from "../../redux/store";
 import { Alert } from "../atoms";
 import { FormMain } from "../molecules";
+import { FormTypes } from "../../enums";
 
 interface FormReservationProps {
   item: IPackage | null;
@@ -84,7 +85,7 @@ function FormReservation({ item, children }: FormReservationProps) {
         <FormattedMessage id="form.price" />
         <span>{item?.price} Є</span>
       </Info>
-      <FormMain onSubmitForm={onSubmitReservation}>{children}</FormMain>
+      <FormMain formType={FormTypes.packages} onSubmitForm={onSubmitReservation}>{children}</FormMain>
     </Container>
   );
 }

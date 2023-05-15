@@ -94,5 +94,6 @@ export interface IBarResrvationUserInfo {
   lastName: string;
   name: string;
   date: string;
+  people: number;
   phone: string;
 }

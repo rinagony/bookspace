@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import { Grid } from "@mui/material";
 import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
 import { useDispatch } from "react-redux";
 import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/store";
-import { Alert, ButtonComponent, DateTimePicker } from "../atoms";
-import { Dayjs } from "dayjs";
+import { Alert, ButtonComponent } from "../atoms";
 import { FormMain } from "../molecules";
 import { addBarReservation } from "../../redux/bar/actions";
 import { IBarResrvationUserInfo } from "../../interfaces";
+import { FormTypes } from "../../enums";
 
 const Container = styled.div`
   padding-top: 2rem 1rem;
@@ -29,17 +28,16 @@ function FormBar() {
     errorMessage: "",
   });
 
-  const [timePickerValue, setTimePickerValue] = useState<Dayjs | null>(null);
-
   const dispatch = useDispatch<ThunkDispatch<RootState, void, AnyAction>>();
 
   const onSubmitForm = (data: any, reset: any) => {
-    if (timePickerValue) {
+    if (data.calendar) {
       const info: IBarResrvationUserInfo = {
         email: data.email,
         lastName: data.lastName,
         name: data.name,
-        date: timePickerValue.format("DD/MM/YYYY HH:MM"),
+        date: data.calendar.format("DD/MM/YYYY HH:MM"),
+        people: data.people,
         phone: data.phone,
       };
       dispatch(addBarReservation(info))
@@ -97,13 +95,7 @@ function FormBar() {
           )
         }
       />
-      <FormMain onSubmitForm={onSubmitForm}>
-        <Grid container>
-          <DateTimePicker
-            value={timePickerValue}
-            setValue={setTimePickerValue}
-          />
-        </Grid>
+      <FormMain formType={FormTypes.bar} onSubmitForm={onSubmitForm}>
         <ButtonComponent styles={{ marginTop: "2rem" }} typeButton="submit">
           <FormattedMessage id="primary.reservation" />
         </ButtonComponent>
