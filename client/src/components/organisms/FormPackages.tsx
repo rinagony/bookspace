@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { IPackage, IReservationInfo } from "../../interfaces";
 import { FormattedMessage } from "react-intl";
-import { useDispatch } from "react-redux";
-import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { addPackReservation } from "../../redux/about/actions";
-import { RootState } from "../../redux/store";
+import { useAppDispatch } from "../../redux/store";
 import { Alert } from "../atoms";
 import { FormMain } from "../molecules";
 import { FormTypes } from "../../enums";
@@ -33,7 +31,7 @@ function FormReservation({ item, children }: FormReservationProps) {
     email?: string;
   }>({ show: false, error: false });
 
-  const dispatch = useDispatch<ThunkDispatch<RootState, void, AnyAction>>();
+  const dispatch = useAppDispatch()
 
   const onSubmitReservation = (data: any, reset: any) => {
     if (item) {

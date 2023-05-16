@@ -6,9 +6,8 @@ import {
   ProductItem,
   SidebarProducts,
 } from "../molecules";
-import { NoData, SkeletonCard } from "../atoms";
+import { SkeletonCard } from "../atoms";
 import styled from "styled-components";
-import { FormattedMessage } from "react-intl";
 import { Grid } from "@mui/material";
 import { Pagination } from "@mui/material";
 import { IInitialStateProducts, IProduct } from "../../interfaces";

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IInitialStateAbout, IInitialStateBar } from "../../interfaces";
+import { IInitialStateBar } from "../../interfaces";
 import { getBarAction } from "./actions";
 
 const InitialState: IInitialStateBar = {
@@ -34,6 +34,6 @@ export const barSlice = createSlice({
   },
 });
 
-export const {} = barSlice.actions;
+// export const {} = barSlice.actions;
 
 export default barSlice.reducer;

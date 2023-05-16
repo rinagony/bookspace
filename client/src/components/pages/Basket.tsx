@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { type RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
+import { useAppDispatch, type RootState } from "../../redux/store";
 import { Layout } from "../organisms";
 import { ButtonComponent, NoData } from "../atoms";
 import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
 import {
   Alert,
-  Box,
   Dialog,
   DialogActions,
   DialogTitle,
@@ -15,21 +14,21 @@ import {
   Snackbar,
 } from "@mui/material";
 import { IProductSelected } from "../../interfaces";
-import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import {
   getProductsFromBasket,
   removeProductFromBasket,
 } from "../../redux/products/actions";
 import { useNavigate } from "react-router-dom";
 
-const ImageContainer = styled(Grid)`
+const ImageContainer = styled.div`
   width: 6rem;
   height: 100%;
   overflow: hidden;
   height: auto;
   border-radius: 5px;
   img {
-    height: 200px;
+    max-height: 200px;
+    width: 100%;
   }
 `;
 
@@ -37,9 +36,14 @@ const BasketContainer = styled.div`
   margin-top: 2rem;
 `;
 
-const Title = styled.div`
-  font-size: 1.5rem;
+const Title = styled.h2`
+  font-size: 1.2rem;
   font-weight: 600;
+  margin: 0;
+
+  @media screen and (max-width: 500px) {
+    margin: 0.8rem 0.3rem;
+  }
 `;
 
 const Paragraph = styled.p`
@@ -57,20 +61,16 @@ const Paragraph = styled.p`
 
 const ProductItem = styled(Grid)`
   padding: 1.5rem 0;
-  justify-content: center;
+  display: flex;
+  justify-content: space-around;
+  @media screen and (max-width: 500px) {
+    text-align: center;
+  }
   border-bottom: 1.5px solid ${(props) => props.theme.colors.green100};
 `;
 
-const BoxComponent = styled(Box)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 400;
-  bgcolor: background.paper;
-  border: 2px solid #000;
-  boxshadow: 24;
-  p: 4;
+const Description = styled.div`
+  margin-left: 1rem;
 `;
 
 function Basket() {
@@ -78,7 +78,7 @@ function Basket() {
     (state: RootState) => state.products.productsSelected
   );
   const [alert, setAlert] = useState(false);
-  const dispatch = useDispatch<ThunkDispatch<RootState, void, AnyAction>>();
+  const dispatch = useAppDispatch();
   const [modal, setModal] = useState<{
     show: boolean;
     item: IProductSelected | null;
@@ -138,11 +138,11 @@ function Basket() {
       ) : (
         <BasketContainer>
           {productsSelected.map((item, index) => (
-            <ProductItem key={index} margin={2} container>
-              <ImageContainer sm={4} container justifyContent={"flex-start"}>
+            <ProductItem key={index} container>
+              <ImageContainer>
                 <img src={item.image} srcSet={item.image} alt={item.title} />
               </ImageContainer>
-              <Grid sm={4}>
+              <Description>
                 <Title>{item.title}</Title>
                 <Paragraph>
                   <span>
@@ -156,8 +156,8 @@ function Basket() {
                   </span>
                   {item.amount}
                 </Paragraph>
-              </Grid>
-              <Grid sm={4} container justifyContent={"flex-end"}>
+              </Description>
+              <div>
                 <ButtonComponent
                   onClick={() => setModal({ show: true, item })}
                   styles={{
@@ -169,7 +169,7 @@ function Basket() {
                 >
                   <FormattedMessage id="primary.remove" />
                 </ButtonComponent>
-              </Grid>
+              </div>
             </ProductItem>
           ))}
         </BasketContainer>

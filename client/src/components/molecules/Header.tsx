@@ -4,11 +4,12 @@ import { Container, Grid } from "@mui/material";
 import { Logo, Navigation } from "../atoms";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import LoginIcon from '@mui/icons-material/Login';
+import LoginIcon from "@mui/icons-material/Login";
+import HeaderAds from "./HeaderAds";
 
 const HeaderTopComponent = styled.div`
   padding: 1rem 0;
@@ -75,36 +76,42 @@ const HeaderButtonContainer = styled(Grid)`
 
 function HeaderComponent() {
   const navigate = useNavigate();
-  const productsSelectedAmount: number = useSelector(
-    (state: RootState) => state.products.productsSelected.reduce((acc, item) => item.amount + acc, 0)
+  const location = useLocation();
+  const productsSelectedAmount: number = useSelector((state: RootState) =>
+    state.products.productsSelected.reduce((acc, item) => item.amount + acc, 0)
   );
 
   return (
-    <HeaderTopComponent>
-      <Container maxWidth="lg">
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={3}>
-            <Logo />
+    <>
+      {location.pathname === "/products" ? (
+        <HeaderAds announce="The last chance to get 2 books and get one more book for free with promocode SUMMER20!!!" />
+      ) : null}
+      <HeaderTopComponent>
+        <Container maxWidth="lg">
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={3}>
+              <Logo />
+            </Grid>
+            <Grid item xs={12} md={5}>
+              <Navigation />
+            </Grid>
+            <HeaderButtonContainer item xs={12} md={4}>
+              <ExitButton>
+                <LoginIconComponent />
+                <FormattedMessage id="primary.login" />
+              </ExitButton>
+              <IconButton>
+                <FavoritesIcon />
+              </IconButton>
+              <IconButtonBasket onClick={() => navigate("/basket")}>
+                <BasketIcon />
+                <ProductsAmount>{productsSelectedAmount}</ProductsAmount>
+              </IconButtonBasket>
+            </HeaderButtonContainer>
           </Grid>
-          <Grid item xs={12} md={5}>
-            <Navigation />
-          </Grid>
-          <HeaderButtonContainer item xs={12} md={4}>
-            <ExitButton>
-              <LoginIconComponent />
-              <FormattedMessage id="primary.login" />
-            </ExitButton>
-            <IconButton>
-              <FavoritesIcon />
-            </IconButton>
-            <IconButtonBasket onClick={() => navigate("/basket")}>
-              <BasketIcon />
-              <ProductsAmount>{productsSelectedAmount}</ProductsAmount>
-            </IconButtonBasket>
-          </HeaderButtonContainer>
-        </Grid>
-      </Container>
-    </HeaderTopComponent>
+        </Container>
+      </HeaderTopComponent>
+    </>
   );
 }
 

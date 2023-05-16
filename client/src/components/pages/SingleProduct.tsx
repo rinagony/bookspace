@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { type RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
+import { useAppDispatch, type RootState } from "../../redux/store";
 import { Layout } from "../organisms";
 import { useParams } from "react-router-dom";
 import { Alert, ButtonComponent, NoData } from "../atoms";
@@ -13,7 +13,6 @@ import {
   addProductToBasket,
   getProductsFromBasket,
 } from "../../redux/products/actions";
-import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 
 const ImageContainer = styled.div`
   width: 100%;
@@ -82,6 +81,7 @@ const ButtonsContainer = styled(Grid)`
 
 function SingleProduct() {
   const { id } = useParams();
+  const dispatch = useAppDispatch()
   const products: IProduct[] = useSelector(
     (state: RootState) => state.products.products
   );
@@ -89,7 +89,6 @@ function SingleProduct() {
     undefined
   );
   const [alert, setAlert] = useState(false);
-  const dispatch = useDispatch<ThunkDispatch<RootState, void, AnyAction>>();
 
   useEffect(() => {
     const productItem: IProduct | undefined = products.find(

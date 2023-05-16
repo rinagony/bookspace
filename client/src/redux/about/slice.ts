@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IInitialStateAbout } from "../../interfaces";
-import { addPackReservation, getAboutAction } from "./actions";
+import { getAboutAction } from "./actions";
 
 const InitialState: IInitialStateAbout = {
   aboutInfo: {
@@ -35,6 +35,6 @@ export const aboutSlice = createSlice({
   }
 });
 
-export const { } = aboutSlice.actions;
+// export const { } = aboutSlice.actions;
 
 export default aboutSlice.reducer;

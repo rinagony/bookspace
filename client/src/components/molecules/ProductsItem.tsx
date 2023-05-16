@@ -65,7 +65,7 @@ const Price = styled.p`
   margin-left: 0;
   margin-bottom: 0;
   margin-top: 0.5rem;
-`
+`;
 
 function ProductItem({ data }: ProductItemPropsInterface) {
   const navigate = useNavigate();
@@ -76,6 +76,8 @@ function ProductItem({ data }: ProductItemPropsInterface) {
     <ProductItemComponent
       margin={2}
       item
+      data-aos="fade-up"
+      data-aos-once="true"
       display={"flex"}
       flexDirection={"column"}
       xs={3}

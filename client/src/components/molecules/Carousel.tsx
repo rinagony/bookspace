@@ -22,7 +22,7 @@ const ButtonArrowRight = styled(ButtonArrowLeft)`
 
 const CarouselItself = styled(Carousel)`
   position: relative;
-  background:  ${(props) => props.theme.colors.lightWhite};
+  background: ${(props) => props.theme.colors.lightWhite};
 `;
 
 const CarouselItem = styled.div`
@@ -40,13 +40,13 @@ const CarouselItem = styled.div`
 
 const ImageWrapper = styled.div`
   overflow: hidden;
-`
+`;
 
 const Image = styled.img`
   border-radius: 0.3rem;
-  width:  100%;
+  width: 100%;
   height: 100%;
-  object-fit:scale-down;
+  object-fit: scale-down;
 `;
 
 interface CarouselProps {

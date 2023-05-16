@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Carousel,
-  ErrorComponent,
-  Modal
-} from "../molecules";
+import { Carousel, ErrorComponent, Modal } from "../molecules";
 import { FormattedMessage } from "react-intl";
 import styled from "styled-components";
 import {
@@ -11,25 +7,15 @@ import {
   IModalReservation,
   IInitialStateAbout,
 } from "../../interfaces";
-import { useDispatch, useSelector } from "react-redux";
-import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
-import { RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "../../redux/store";
 import { getAboutAction } from "../../redux/about/actions";
 import { DialogActions, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Alert, ButtonComponent, SkeletonAbout } from "../atoms";
-import { FormPackages, Layout, PackageTabs } from "../organisms";
-import TurnRightIcon from '@mui/icons-material/TurnRight';
-
-const Title = styled.h2`
-  font-size: 1.3rem;
-  text-align: center;
-  margin-bottom: 2rem;
-`;
-
-const AboutComponent = styled(Grid)`
-  margin-top: 1rem;
-`;
+import { FormPackages, LayoutAds, PackageTabs } from "../organisms";
+import TurnRightIcon from "@mui/icons-material/TurnRight";
+import { Subtitle, Title } from "../../assets/styled-components";
 
 const WrapperCarousel = styled(Grid)`
   display: flex;
@@ -58,11 +44,7 @@ const DescriptionBlock = styled(Grid)`
   }
 `;
 
-const SubTitle = styled.h3`
-  font-size: 0.9rem;
-  margin: 1rem 0;
-  font-weight: 600;
-  color: ${(props) => props.theme.colors.red};
+const SubtitleLink = styled(Subtitle)`
   text-decoration: underline;
   cursor: pointer;
 `;
@@ -78,10 +60,10 @@ const LinkComponent = styled(Link)`
   color: ${(props) => props.theme.colors.red};
   text-decoration: underline;
   cursor: pointer;
-`
+`;
 
 function About() {
-  const dispatch = useDispatch<ThunkDispatch<RootState, void, AnyAction>>();
+  const dispatch = useAppDispatch();
   const aboutInfo: IInitialStateAbout = useSelector(
     (state: RootState) => state.about
   );
@@ -113,7 +95,7 @@ function About() {
   if (aboutInfo.error) return <ErrorComponent errorMessage={aboutInfo.error} />;
 
   return (
-    <Layout>
+    <LayoutAds title="about.title">
       <Alert
         alert={alert}
         setAlert={setAlert}
@@ -122,55 +104,59 @@ function About() {
       {aboutInfo.loading ? (
         <SkeletonAbout />
       ) : (
-        <Grid container columnSpacing={{ xs: 1, sm: 2 }}>
-          <Grid item xs={12} lg={2}>
-            Adds content
-          </Grid>
-          <AboutComponent item xs={12} lg={10}>
-            <Title>{aboutInfo.aboutInfo.aboutHeader1}</Title>
-            <WrapperCarousel container>
-              <CarouselItem item sm={12} md={7}>
-                <Carousel images={aboutInfo.aboutInfo.images} />
-              </CarouselItem>
-              <DescriptionBlock item sm={12} md={5}>
-                <Description>{aboutInfo.aboutInfo.aboutParagraph1}</Description>
-                <LinkComponent to="/conferences">{aboutInfo.aboutInfo.aboutHeader2} </LinkComponent>
-                <Description>
-                  {aboutInfo.aboutInfo.aboutParagraph2}
-                </Description>
-                <LinkComponent to="/our-bar">{aboutInfo.aboutInfo.aboutHeader3}</LinkComponent>
-                <Description>
-                  {aboutInfo.aboutInfo.aboutParagraph3}
-                </Description>
-                <SubTitle onClick={() => tabsRef.current?.scrollIntoView()}>
-                    {aboutInfo.aboutInfo.aboutHeader4}<TurnRightIcon fontSize="small"/>
-                </SubTitle>
-              </DescriptionBlock>
-            </WrapperCarousel>
-            <TitleSmall ref={tabsRef}>
-              <FormattedMessage id="about.check-packages" />
-            </TitleSmall>
-            <PackageTabs handleAdd={handleAdd} packages={aboutInfo.aboutInfo.packages}/>
-          </AboutComponent>
-        </Grid>
-      )}
-      <Modal modal={modal.show} title="form.reservation-title">
-        <FormPackages item={modal.item}>
-          <DialogActions>
-            <ButtonComponent typeButton="submit">
-              <FormattedMessage id="primary.reservation" />
-            </ButtonComponent>
-            <ButtonComponent
-              typeButton="button"
-              styles={{ background: "#ff8282" }}
-              onClick={handleClose}
+        <>
+          <WrapperCarousel container>
+            <CarouselItem
+              item
+              sm={12}
+              md={7}
+              data-aos="fade-up"
+              data-aos-once="true"
             >
-              <FormattedMessage id="primary.cancel" />
-            </ButtonComponent>
-          </DialogActions>
-        </FormPackages>
-      </Modal>
-    </Layout>
+              <Carousel images={aboutInfo.aboutInfo.images} />
+            </CarouselItem>
+            <DescriptionBlock item sm={12} md={5}>
+              <Description>{aboutInfo.aboutInfo.aboutParagraph1}</Description>
+              <LinkComponent to="/conferences">
+                {aboutInfo.aboutInfo.aboutHeader2}{" "}
+              </LinkComponent>
+              <Description>{aboutInfo.aboutInfo.aboutParagraph2}</Description>
+              <LinkComponent to="/our-bar">
+                {aboutInfo.aboutInfo.aboutHeader3}
+              </LinkComponent>
+              <Description>{aboutInfo.aboutInfo.aboutParagraph3}</Description>
+              <SubtitleLink onClick={() => tabsRef.current?.scrollIntoView()}>
+                {aboutInfo.aboutInfo.aboutHeader4}
+                <TurnRightIcon fontSize="small" />
+              </SubtitleLink>
+            </DescriptionBlock>
+          </WrapperCarousel>
+          <TitleSmall ref={tabsRef}>
+            <FormattedMessage id="about.check-packages" />
+          </TitleSmall>
+          <PackageTabs
+            handleAdd={handleAdd}
+            packages={aboutInfo.aboutInfo.packages}
+          />
+          <Modal modal={modal.show} title="form.reservation-title">
+            <FormPackages item={modal.item}>
+              <DialogActions>
+                <ButtonComponent typeButton="submit">
+                  <FormattedMessage id="primary.reservation" />
+                </ButtonComponent>
+                <ButtonComponent
+                  typeButton="button"
+                  styles={{ background: "#ff8282" }}
+                  onClick={handleClose}
+                >
+                  <FormattedMessage id="primary.cancel" />
+                </ButtonComponent>
+              </DialogActions>
+            </FormPackages>
+          </Modal>
+        </>
+      )}
+    </LayoutAds>
   );
 }
 

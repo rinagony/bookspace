@@ -1,5 +1,4 @@
 import React from "react";
-import { Container } from "@mui/material";
 import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
 

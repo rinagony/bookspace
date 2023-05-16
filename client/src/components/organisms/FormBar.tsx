@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
-import { useDispatch } from "react-redux";
-import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
-import { RootState } from "../../redux/store";
+import { useAppDispatch } from "../../redux/store";
 import { Alert, ButtonComponent } from "../atoms";
 import { FormMain } from "../molecules";
 import { addBarReservation } from "../../redux/bar/actions";
@@ -28,7 +26,7 @@ function FormBar() {
     errorMessage: "",
   });
 
-  const dispatch = useDispatch<ThunkDispatch<RootState, void, AnyAction>>();
+  const dispatch = useAppDispatch()
 
   const onSubmitForm = (data: any, reset: any) => {
     if (data.calendar) {

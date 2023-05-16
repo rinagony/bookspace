@@ -83,7 +83,7 @@ export interface IInitialStateBar {
     subtitle2: string;
     phone: string;
     email: string;
-    menu: IBarMenu[]
+    menu: IBarMenu[];
   };
   loading: boolean;
   error: string | undefined;
@@ -96,4 +96,34 @@ export interface IBarResrvationUserInfo {
   date: string;
   people: number;
   phone: string;
+}
+
+export interface IContact {
+  title: string;
+  email: string;
+  phone: string;
+}
+
+export interface IContactsInfo {
+  contacts: IContact[];
+  address: string;
+  city: string;
+}
+
+export interface IContact {
+  title: string;
+  email: string;
+  phone: string;
+}
+
+export interface IContactInfo {
+  contacts: IContact[];
+  address: string;
+  city: string;
+}
+
+export interface IInitialStateContacts {
+  contactsInfo: IContactInfo | null;
+  loading: boolean;
+  error: undefined | string;
 }

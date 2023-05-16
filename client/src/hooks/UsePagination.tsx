@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { IProduct } from "../interfaces";
 
 function usePagination(data: IProduct[], itemsPerPage: number) {

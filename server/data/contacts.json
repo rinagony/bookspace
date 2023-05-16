@@ -1,0 +1,21 @@
+{
+    "contacts": [
+      {
+        "title": "Bookstore",
+        "email": "bookstore@bookspace.com",
+        "phone": "+34551723456"
+      },
+      {
+        "title": "Conferences",
+        "email": "conferences@bookspace.com",
+        "phone": "+34551723453"
+      },
+      {
+        "title": "Old Bar",
+        "email": "oldbar@bookspace.com",
+        "phone": "+34551723459"
+      }
+    ],
+    "address": "Carrer de Pujades, 200",
+    "city": "08005 · Barcelona - Spain"
+  }

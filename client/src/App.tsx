@@ -12,15 +12,16 @@ import {
 import { ThemeProvider } from "styled-components";
 import { colors } from "./assets/variables";
 import { getAllProductsAction, getProductsFromBasket } from "./redux/products/actions";
-import { useDispatch } from "react-redux";
-import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
-import { RootState } from "./redux/store";
+import { useAppDispatch } from "./redux/store";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
 
 function App() {
-  const dispatch = useDispatch<ThunkDispatch<RootState, void, AnyAction>>();
+  const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(getAllProductsAction());
-    dispatch(getProductsFromBasket())
+    dispatch(getProductsFromBasket());
+    AOS.init();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (

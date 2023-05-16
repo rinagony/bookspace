@@ -53,5 +53,11 @@
   "primary.phone": "Phone",
   "primary.email": "Email",
   "bar.sent": "Your reservation was confirmed. Check out email {val} for more details.",
-  "form.people": "Number of people"
+  "form.people": "Number of people",
+  "contacts.contact": "Contact us",
+  "contacts.bookstore": "Book store",
+  "bar.title": "Old Bar Bookspace",
+  "about.title": "About Bookspace",
+  "primary.address": "Address:",
+  "primary.city": "City:"
 }
