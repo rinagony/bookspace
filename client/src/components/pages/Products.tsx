@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { type RootState } from "../../redux/store";
-import {
-  ErrorComponent,
-  ProductItem,
-  SidebarProducts,
-} from "../molecules";
+import { ErrorComponent, ProductItem, SidebarProducts } from "../molecules";
 import { SkeletonCard } from "../atoms";
 import styled from "styled-components";
 import { Grid } from "@mui/material";
@@ -78,9 +74,13 @@ function Products() {
         setProductsFiltered(items);
         break;
       case SortProductsOptions.alphabet:
-          items.sort((a, b) => a.title.localeCompare(b.title));
-          setProductsFiltered(items);
-          break;
+        items.sort((a, b) => a.title.localeCompare(b.title));
+        setProductsFiltered(items);
+        break;
+      case SortProductsOptions.rating:
+        items.sort((a, b) => b.rating.value - a.rating.value);
+        setProductsFiltered(items);
+        break;
       default:
         break;
     }

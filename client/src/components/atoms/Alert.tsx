@@ -4,7 +4,7 @@ import React, { Dispatch, SetStateAction } from "react";
 interface AlertComponentProps {
   message: React.ReactNode;
   alert: boolean;
-  setAlert: Dispatch<SetStateAction<boolean>>;
+  setAlert: Dispatch<SetStateAction<{show: boolean, type: string}>>;
   error?: boolean;
 }
 
@@ -13,11 +13,11 @@ function AlertComponent({ message, alert, setAlert, error }: AlertComponentProps
     <Snackbar
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
       open={alert}
-      onClose={() => setAlert(false)}
+      onClose={() => setAlert({show: false, type: ''})}
       sx={{ width: '100%' }}
     >
       <Alert
-        onClose={() => setAlert(false)}
+        onClose={() => setAlert({show: false, type: ''})}
         severity={error ? "error" : "success"}
       >
         {message}

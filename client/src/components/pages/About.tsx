@@ -68,7 +68,7 @@ function About() {
     (state: RootState) => state.about
   );
   const tabsRef = React.useRef<HTMLDivElement>(null);
-  const [alert, setAlert] = useState(false);
+  const [alert, setAlert] = useState<{show: boolean, type: string}>({show: false, type: ''});
   const [modal, setModal] = useState<IModalReservation>({
     show: false,
     item: null,
@@ -97,7 +97,7 @@ function About() {
   return (
     <LayoutAds title="about.title">
       <Alert
-        alert={alert}
+        alert={alert.show}
         setAlert={setAlert}
         message={<FormattedMessage id="product.added" />}
       />

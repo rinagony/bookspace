@@ -57,7 +57,7 @@ function OurBar() {
   const barInfo: IInitialStateBar = useSelector(
     (state: RootState) => state.bar
   );
-  const [alert, setAlert] = useState(false);
+  const [alert, setAlert] = useState<{show: boolean, type: string}>({show: false, type: ''});
   const reservationRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -93,7 +93,7 @@ function OurBar() {
   return (
     <LayoutAds title="bar.title">
       <Alert
-        alert={alert}
+        alert={alert.show}
         setAlert={setAlert}
         message={<FormattedMessage id="product.added" />}
       />

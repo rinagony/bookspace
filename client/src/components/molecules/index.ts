@@ -9,3 +9,5 @@ export { default as Table } from "./Table";
 export { default as FormMain } from "./FormMain";
 export { default as GoogleMap } from "./Map";
 export { default as HeaderAds } from "./HeaderAds";
+export { default as LeaveReview } from "./LeaveReview";
+export { default as ListReview } from "./ListReview";

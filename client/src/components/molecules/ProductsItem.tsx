@@ -2,7 +2,7 @@ import React from "react";
 import { Grid } from "@mui/material";
 import styled from "styled-components";
 import { IProduct } from "../../interfaces";
-import { ButtonComponent } from "../atoms";
+import { ButtonComponent, Rating } from "../atoms";
 import { useNavigate } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
 
@@ -59,13 +59,17 @@ const Title = styled(Description)`
 const Price = styled.p`
   font-weight: 600;
   font-size: 1.1rem;
-  text-align: right;
   color: ${(props) => props.theme.colors.darkGreen};
-  margin-right: 0;
-  margin-left: 0;
-  margin-bottom: 0;
-  margin-top: 0.5rem;
+  margin: 0 ;
 `;
+
+const WrapperRating = styled.div`
+  display: flex;
+  width: 100%;
+  margin-top: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+`
 
 function ProductItem({ data }: ProductItemPropsInterface) {
   const navigate = useNavigate();
@@ -92,7 +96,10 @@ function ProductItem({ data }: ProductItemPropsInterface) {
       </ImageContainer>
       <Title>{data.title}</Title>
       <Description>{data.description}</Description>
-      <Price>{data.price} Є</Price>
+      <WrapperRating>
+        <Rating votes={data.rating.votes} rate={data.rating.value} blockRate />
+        <Price>{data.price} Є</Price>
+      </WrapperRating>
       <ButtonComponent
         onClick={handleOnClick}
         styles={{ marginTop: "1rem" }}

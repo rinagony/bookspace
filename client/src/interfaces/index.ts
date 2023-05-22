@@ -1,5 +1,12 @@
 import { Dayjs } from "dayjs";
 
+export interface IReview {
+  text: string;
+  time: string;
+  username: string;
+  vote: number;
+}
+
 export interface IProduct {
   id: string;
   title: string;
@@ -8,6 +15,11 @@ export interface IProduct {
   inStock: boolean;
   price: number;
   image: string;
+  rating: {
+    votes: number[],
+    value: number,
+    review: IReview[]
+  }
 }
 
 export interface IProductSelected extends IProduct {
@@ -126,4 +138,10 @@ export interface IInitialStateContacts {
   contactsInfo: IContactInfo | null;
   loading: boolean;
   error: undefined | string;
+}
+
+export interface IProductRatingPost {
+  id: string;
+  vote: number;
+  review: IReview;
 }

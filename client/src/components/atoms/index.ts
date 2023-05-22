@@ -10,3 +10,4 @@ export { default as Navigation } from "./Navigation";
 export { default as RadioGroup } from "./RadioGroup";
 export { default as Calendar } from "./Calendar";
 export { default as DateTimePicker } from "./DateTimePicker";
+export { default as Rating } from "./Rating";

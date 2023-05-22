@@ -59,5 +59,16 @@
   "bar.title": "Old Bar Bookspace",
   "about.title": "About Bookspace",
   "primary.address": "Address:",
-  "primary.city": "City:"
+  "primary.city": "City:",
+  "primary.rating": "Rating:",
+  "primary.rate": "Rate:",
+  "primary.leave-review": "Leave review about {val}",
+  "products.send": "Send review",
+  "product.textarea-req": "Please, leave your thoughts",
+  "product.rating-req": "Please, leave stars",
+  "form.description": "Description:",
+  "product.leave-review": "Please, leave a review",
+  "product.name-req": "Please, leave your name",
+  "primary.no-reviews": "There are no any review",
+  "review.sent": "Review was successfully sent"
 }
