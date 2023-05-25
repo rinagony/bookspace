@@ -20,7 +20,7 @@ const ButtonArrowRight = styled(ButtonArrowLeft)`
   right: 0;
 `;
 
-const CarouselItself = styled(Carousel)`
+const CarouselComponent = styled(Carousel)`
   position: relative;
   background: ${(props) => props.theme.colors.lightWhite};
 `;
@@ -53,9 +53,10 @@ interface CarouselProps {
   images: string[];
 }
 
-function CarouselComponent({ images }: CarouselProps) {
+function Slider({ images }: CarouselProps) {
+  console.log(images, 'images')
   return (
-    <CarouselItself
+    <CarouselComponent
       infiniteLoop
       autoPlay
       showStatus={false}
@@ -82,8 +83,8 @@ function CarouselComponent({ images }: CarouselProps) {
           </ImageWrapper>
         </CarouselItem>
       ))}
-    </CarouselItself>
+    </CarouselComponent>
   );
 }
 
-export default CarouselComponent;
+export default Slider;

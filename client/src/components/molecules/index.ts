@@ -1,6 +1,6 @@
 export { default as ProductItem } from "./ProductsItem";
 export { default as SidebarProducts } from "./SidebarProducts";
-export { default as Carousel } from "./Carousel";
+export { default as Slider } from "./Slider";
 export { default as ErrorComponent } from "./Error";
 export { default as Modal } from "./Modal";
 export { default as Header } from "./Header"

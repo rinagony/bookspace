@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Carousel, ErrorComponent, Table } from "../molecules";
+import { Slider, ErrorComponent, Table } from "../molecules";
 import { FormBar, LayoutAds } from "../organisms";
 import { FormattedMessage } from "react-intl";
 import styled from "styled-components";
@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../redux/store";
 import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Alert, NoData, SkeletonAbout } from "../atoms";
+import { Alert, NoData, SkeletonPage } from "../atoms";
 import { getBarAction } from "../../redux/bar/actions";
 import TurnRightIcon from "@mui/icons-material/TurnRight";
 import { Description, Subtitle, Title } from "../../assets/styled-components";
@@ -98,7 +98,7 @@ function OurBar() {
         message={<FormattedMessage id="product.added" />}
       />
       {barInfo.loading ? (
-        <SkeletonAbout />
+        <SkeletonPage />
       ) : (
         <>
           <WrapperInfo container>
@@ -109,7 +109,7 @@ function OurBar() {
               sm={12}
               md={7}
             >
-              <Carousel images={barInfo.barInfo.images} />
+              <Slider images={barInfo.barInfo.images} />
             </CarouselItem>
             <DescriptionBlock item sm={12} md={5}>
               <Description>{barInfo.barInfo.description}</Description>

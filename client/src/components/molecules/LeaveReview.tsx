@@ -6,12 +6,11 @@ import { Subtitle } from "../../assets/styled-components";
 import { FormattedMessage } from "react-intl";
 
 const ReviewComponent = styled.div`
-  -webkit-box-shadow: 0px 1px 8px 0px rgba(0, 193, 196, 0.68);
-  -moz-box-shadow: 0px 1px 8px 0px rgba(0, 193, 196, 0.68);
-  box-shadow: 0px 1px 8px 0px rgba(0, 193, 196, 0.68);
-  padding: 1.5rem;
+  border: 1px solid ${(props) => props.theme.colors.white};
+  padding: 0.5rem;
   border-radius: 0.5rem;
   width: 100%;
+  margin-top: 1.5rem;
 `;
 
 const HelperText = styled.p`

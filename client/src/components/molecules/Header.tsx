@@ -51,6 +51,7 @@ const IconButtonBasket = styled(IconButton)`
 
 const ExitButton = styled(IconButton)`
   margin-right: 2rem;
+  color: ${(props) => props.theme.colors.darkGreen};
 `;
 
 const ProductsAmount = styled.div`

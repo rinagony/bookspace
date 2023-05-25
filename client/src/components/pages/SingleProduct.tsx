@@ -232,16 +232,14 @@ function SingleProduct() {
             </InfoContainer>
           </ProductContainer>
           <ProductContainer container ref={productContainerRef}>
+            <Grid item md={8}>
             {showReview ? (
-              <Grid item xs={8}>
                 <LeaveReview
                   productTitle={productSelected.title}
                   rating={productSelected.rating}
                   onReview={onReview}
                 />
-              </Grid>
             ) : null}
-            <Grid item xs={8}>
               <ListReview data={productSelected.rating.review} />
             </Grid>
           </ProductContainer>

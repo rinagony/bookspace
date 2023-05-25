@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Carousel, ErrorComponent, Modal } from "../molecules";
+import { Slider, ErrorComponent, Modal } from "../molecules";
 import { FormattedMessage } from "react-intl";
 import styled from "styled-components";
 import {
@@ -12,7 +12,7 @@ import { RootState, useAppDispatch } from "../../redux/store";
 import { getAboutAction } from "../../redux/about/actions";
 import { DialogActions, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Alert, ButtonComponent, SkeletonAbout } from "../atoms";
+import { Alert, ButtonComponent, SkeletonPage } from "../atoms";
 import { FormPackages, LayoutAds, PackageTabs } from "../organisms";
 import TurnRightIcon from "@mui/icons-material/TurnRight";
 import { Subtitle, Title } from "../../assets/styled-components";
@@ -68,7 +68,10 @@ function About() {
     (state: RootState) => state.about
   );
   const tabsRef = React.useRef<HTMLDivElement>(null);
-  const [alert, setAlert] = useState<{show: boolean, type: string}>({show: false, type: ''});
+  const [alert, setAlert] = useState<{ show: boolean; type: string }>({
+    show: false,
+    type: "",
+  });
   const [modal, setModal] = useState<IModalReservation>({
     show: false,
     item: null,
@@ -102,7 +105,7 @@ function About() {
         message={<FormattedMessage id="product.added" />}
       />
       {aboutInfo.loading ? (
-        <SkeletonAbout />
+        <SkeletonPage />
       ) : (
         <>
           <WrapperCarousel container>
@@ -113,7 +116,7 @@ function About() {
               data-aos="fade-up"
               data-aos-once="true"
             >
-              <Carousel images={aboutInfo.aboutInfo.images} />
+              <Slider images={aboutInfo.aboutInfo.images} />
             </CarouselItem>
             <DescriptionBlock item sm={12} md={5}>
               <Description>{aboutInfo.aboutInfo.aboutParagraph1}</Description>

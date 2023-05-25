@@ -5,7 +5,7 @@ import { Logo } from "../atoms";
 import { FormattedMessage } from "react-intl";
 
 const FooterComponent = styled.div`
-  padding: 1rem 0;
+  padding: 1rem 0 2rem 0;
   background: ${(props) => props.theme.colors.green100};
 `;
 

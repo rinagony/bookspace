@@ -24,7 +24,7 @@ const ImageContainer = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  height: 15rem;
+  max-height: 15rem;
   border-bottom": 
   border-radius: 5px;
 `;
