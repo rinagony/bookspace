@@ -5,6 +5,9 @@ import { FormattedMessage } from "react-intl";
 import { SortProductsOptions } from "../../enums";
 
 const SidebarContainer = styled.div`
+  @media screen and (max-width: 900px) {
+    margin-top: 4.2rem;
+  }
   margin-top: 2rem;
   padding: 1rem 1rem 2rem 1rem;
   border-radius: 0.5rem;
@@ -50,7 +53,9 @@ function SidebarProducts({
         </Paragraph>
         <RadioGroup
           type="sorter"
-          options={Object.values(SortProductsOptions).filter((v) => isNaN(Number(v)))}
+          options={Object.values(SortProductsOptions).filter((v) =>
+            isNaN(Number(v))
+          )}
           onChange={handleSortData}
         />
       </Block>

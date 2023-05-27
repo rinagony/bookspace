@@ -27,7 +27,7 @@ function SearchField({ handleSearchData }: SearchFieldProps) {
   return (
     <>
       <Form onSubmit={handleSubmit(onSubmitSearch)}>
-        <SearchInput type="text" {...register("searchData")} />
+        <SearchInput type="search" {...register("searchData")} />
         <ButtonComponent styles={{padding: '0.2rem'}} typeButton="submit">
           <SearchOutlinedIcon />
         </ButtonComponent>

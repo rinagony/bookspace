@@ -10,7 +10,13 @@ const HeaderAdsComponent = styled.div`
   overflow: hidden;
   font-weight: 600;
   text-align: center;
-margin: 0;
+  margin: 0;
+  @media screen and (max-width: 900px) {
+    position: fixed;
+    height: 2.2rem;
+    width: 100%;
+    z-index: 10;
+  }
 `;
 
 interface AlertComponentProps {

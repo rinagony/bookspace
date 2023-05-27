@@ -58,10 +58,7 @@ const Title = styled.div`
 `;
 
 const Paragraph = styled.p`
-  margin-top: 10px;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
+  margin: 1rem 0;
   color: ${(props) => props.theme.colors.darkGreen};
   font-size: 1.1rem;
   span {

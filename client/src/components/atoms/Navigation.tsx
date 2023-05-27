@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const WrapperPageItems = styled.div`
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 900px) {
     flex-direction: column;
     justify-content: flex-around;
     align-items: center;
@@ -21,7 +21,7 @@ const PageItem = styled.a`
   margin-left: 1.1rem;
   border-bottom: 1px solid ${(props) => props.theme.colors.black};
   white-space: nowrap;
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 900px) {
     margin-top: 1rem;
   }
 `;

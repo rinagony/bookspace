@@ -38,7 +38,7 @@ function RatingComponent({
       ) : null}
       <WrapperRating>
         <Rating
-            size={size === 'small' ? 'small' : 'medium'}
+          size={size === 'small' ? 'small' : 'medium'}
           name="simple-controlled"
           value={rate}
           readOnly={blockRate}

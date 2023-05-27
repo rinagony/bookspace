@@ -11,6 +11,9 @@ const ContainerComponent = styled(Container)`
   padding-top: 2rem;
   padding-bottom: 4rem;
   min-height: 81vh;
+  @media screen and (max-width: 900px) {
+    padding-top: 5rem;
+  }
 `;
 
 function Layout({ children }: LayoutPropsInterface) {

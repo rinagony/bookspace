@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import { Container, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { Logo, Navigation } from "../atoms";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
@@ -11,9 +11,62 @@ import { RootState } from "../../redux/store";
 import LoginIcon from "@mui/icons-material/Login";
 import HeaderAds from "./HeaderAds";
 
+const HamburgerNav = styled.div`
+  height: 0px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s;
+  transition: height 0.2s;
+
+  &.active {
+    height: 10rem;
+    opacity: 1;
+    visibility: visible;
+  }
+`;
+
+const WrapperButtons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+const OpenMenu = styled.button`
+  background: inherit;
+  border: none;
+  .bar1,
+  .bar2,
+  .bar3 {
+    width: 21px;
+    height: 3px;
+    background-color: ${(props) => props.theme.colors.darkGreen};
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+
+  &.open {
+    .bar1 {
+      transform: translate(0, 9px) rotate(-45deg);
+    }
+    .bar2 {
+      opacity: 0;
+    }
+    .bar3 {
+      transform: translate(0, -9px) rotate(45deg);
+    }
+  }
+`;
+
+const WrapperMobile = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 const HeaderTopComponent = styled.div`
-  padding: 1rem 0;
+  padding: 1rem;
   background: ${(props) => props.theme.colors.green100};
+  overflow: hidden;
 `;
 
 const iconStyles = css`
@@ -75,43 +128,94 @@ const HeaderButtonContainer = styled(Grid)`
   }
 `;
 
+const HeaderMobile = styled.div`
+  position: fixed;
+  z-index: 10;
+  top: 2.2rem;
+  width: 100%;
+  display: none;
+  @media screen and (max-width: 900px) {
+    display: block;
+  }
+`;
+
+const Header = styled(HeaderTopComponent)`
+  padding: 1rem 3.5rem;
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
+`;
+
 function HeaderComponent() {
   const navigate = useNavigate();
   const location = useLocation();
   const productsSelectedAmount: number = useSelector((state: RootState) =>
     state.products.productsSelected.reduce((acc, item) => item.amount + acc, 0)
   );
+  const [showMobileNav, setShowMobileNav] = useState<boolean>(false);
+  const toggleMobileNav = () => {
+    setShowMobileNav((prev) => !prev);
+  };
 
   return (
     <>
       {location.pathname === "/products" ? (
         <HeaderAds announce="The last chance to get 2 books and get one more book for free with promocode SUMMER20!!!" />
       ) : null}
-      <HeaderTopComponent>
-        <Container maxWidth="lg">
+      <Header>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={3}>
+            <Logo />
+          </Grid>
+          <Grid item xs={12} md={5}>
+            <Navigation />
+          </Grid>
+          <HeaderButtonContainer item xs={12} md={4}>
+            <ExitButton>
+              <LoginIconComponent />
+              <FormattedMessage id="primary.login" />
+            </ExitButton>
+            <IconButton>
+              <FavoritesIcon />
+            </IconButton>
+            <IconButtonBasket onClick={() => navigate("/basket")}>
+              <BasketIcon />
+              <ProductsAmount>{productsSelectedAmount}</ProductsAmount>
+            </IconButtonBasket>
+          </HeaderButtonContainer>
+        </Grid>
+      </Header>
+      <HeaderMobile style={{top: location.pathname === "/products" ? "2.2rem" : "0" }}>
+        <HeaderTopComponent>
           <Grid container spacing={3}>
             <Grid item xs={12} md={3}>
-              <Logo />
+              <WrapperMobile>
+                <Logo />
+                <WrapperButtons>
+                  <IconButton>
+                    <FavoritesIcon />
+                  </IconButton>
+                  <IconButtonBasket onClick={() => navigate("/basket")}>
+                    <BasketIcon />
+                    <ProductsAmount>{productsSelectedAmount}</ProductsAmount>
+                  </IconButtonBasket>
+                </WrapperButtons>
+                <OpenMenu
+                  onClick={toggleMobileNav}
+                  className={showMobileNav ? "open" : ""}
+                >
+                  <div className="bar1"></div>
+                  <div className="bar2"></div>
+                  <div className="bar3"></div>
+                </OpenMenu>
+              </WrapperMobile>
+              <HamburgerNav className={showMobileNav ? "active" : ""}>
+                <Navigation />
+              </HamburgerNav>
             </Grid>
-            <Grid item xs={12} md={5}>
-              <Navigation />
-            </Grid>
-            <HeaderButtonContainer item xs={12} md={4}>
-              <ExitButton>
-                <LoginIconComponent />
-                <FormattedMessage id="primary.login" />
-              </ExitButton>
-              <IconButton>
-                <FavoritesIcon />
-              </IconButton>
-              <IconButtonBasket onClick={() => navigate("/basket")}>
-                <BasketIcon />
-                <ProductsAmount>{productsSelectedAmount}</ProductsAmount>
-              </IconButtonBasket>
-            </HeaderButtonContainer>
           </Grid>
-        </Container>
-      </HeaderTopComponent>
+        </HeaderTopComponent>
+      </HeaderMobile>
     </>
   );
 }

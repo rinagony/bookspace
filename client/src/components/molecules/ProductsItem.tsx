@@ -60,7 +60,7 @@ const Price = styled.p`
   font-weight: 600;
   font-size: 1.1rem;
   color: ${(props) => props.theme.colors.darkGreen};
-  margin: 0 ;
+  margin: 0;
 `;
 
 const WrapperRating = styled.div`
@@ -69,7 +69,7 @@ const WrapperRating = styled.div`
   margin-top: 0.5rem;
   align-items: center;
   justify-content: space-between;
-`
+`;
 
 function ProductItem({ data }: ProductItemPropsInterface) {
   const navigate = useNavigate();
